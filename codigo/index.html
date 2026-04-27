@@ -1,0 +1,105 @@
+   <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Trials of Dune</title>
+   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body> 
+   <header class="header"><!-- header -->
+      
+      <nav class="navbar"><!-- navbar -->
+         
+         <ul class="itensEsquerda">
+             <li>
+               <a href="livros.html">LIVROS</a>
+            </li>
+            <li>
+               <a href="testePersonalidade.html">TESTE DE PERSONALIDADE</a>
+            </li>
+         </ul>
+           
+         <li class="logo">
+            <a href="index.html">
+               <img style="width: 100px;" src="assets/imgs/logo.png" alt="Logo TOD">
+            </a>            
+         </li>
+
+         <ul class="itensDireita">
+            <li>
+               <a href="login.html">LOGIN</a>
+            </li>
+         </ul>
+            
+      </nav>
+   </header>
+
+   <main>
+
+      <section>
+         <div class="banner">
+            <img src="assets/imgs/banner(escurecido e menos saturado).png" alt="Fundo Banner">
+            <div class="divSlogan">
+               
+               <h1>
+               QUEM É VOCÊ <br>
+               PERANTE AS AREIAS<br>
+               DE <b><i>DUNA?</i></b></h1>
+
+               <p class="text">No universo de Arrakis, cada escolha molda o seu destino. Descubra qual é o seu papel nesse mundo implacável e até onde você iria para conquistar o controle sobre o deserto com Trials of Dune. 
+               <br>Faça o teste de personalidade clicando abaixo.</p>
+                  
+               <button class="button" onclick="irTeste()">FAÇA AQUI</button>
+                  <script>
+                     function irTeste(){// codigo para mandar usuario para outra pagina no clique de um botão
+                        window.location.href = "testePersonalidade.html";
+                     }
+                  </script>
+            </div>
+         </div>
+      </section>
+
+      <section class="infos">
+         <div class="fundoInfos">
+            <img src="" alt="Fundo infos">
+            
+            <div class="conteudo1">
+               <h1>DUNA: PARTE 3 GANHA UM</h1> 
+               <h1>TRAILER DE ANÚNCIO!</h1>
+
+               <div class="video">
+                  <!-- video do ytb trailer duna 3 -->
+               </div>
+            </div>
+
+            <div class="conteudo2">
+               <div class="textinho">
+                  
+                  <p>textinho falando um pocuo sobre o filme que vai lançar e que ele é baseado no segundo livro</p>
+                  
+                  <button onclick="irLivro()">Saiba Mais</button>
+                  <script>
+                     function irLivro(){
+                        window.location.href = 'livros.html';
+                     }
+                  </script>
+
+               </div>
+               
+               <img src="" alt="Livro Messias de Duna">
+            </div>
+         </div>
+      </section>
+   </main>
+   
+   <footer class="footer">
+      <p>© 2026 TrialsOfDune.</p>
+   </footer>
+      
+      
+
+</body>
+</html>

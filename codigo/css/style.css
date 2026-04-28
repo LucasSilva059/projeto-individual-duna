@@ -30,9 +30,15 @@ body{ /*Isso tira as bordinhas brancas do site*/
    list-style: none; /*serve para tirar a bolinha do style*/
    gap: 80px;
 }
+
 .itensDireita{
    position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
    left: 91%; /* 90% para deixa-lo com um gapzinho ali no final*/
+}
+
+.itensEsquerda{
+   position: absolute;
+   right: 69%;
 }
 
 .header .navbar .logo{
@@ -40,13 +46,14 @@ body{ /*Isso tira as bordinhas brancas do site*/
    left: 50%;
    transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
    list-style: none;
+   
 }
 
 .navbar a{
    text-decoration: none;
    font-weight: 500;
    letter-spacing: 1px;
-   color: #bd7536;
+   color: #b0895c;
    font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -60,35 +67,36 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .banner {
    position: relative;
-   
 }
 
 .divSlogan{
    position: absolute;
    top: 40%;
-   left: 7%; /* empurra pra dentro da tela */
+   left: 5%; /* empurra pra dentro da tela */
    transform: translateY(-50%);
 }
 
 .divSlogan h1{
-   color: #bd7536;
+   color: #b0895c;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: 60px;
    font-weight: 400;
 }
 
 .divSlogan p{
-   color: #bd7536;
+   color: #b0895c;
    font-size: 15px;
    max-width: 500px;/*limita até onde vai o texto*/
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .button{
+   position: absolute;
    width: 220px;
    height: 80px;
 
    border-radius: 50px;
+   top: 110%;
 }
 
 .button :hover{
@@ -96,7 +104,7 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 .divSlogan .button{
-   background-color: #bd7536;
+   background-color: #b0895c;
    
    color: #171515;
    font-size: 30px;

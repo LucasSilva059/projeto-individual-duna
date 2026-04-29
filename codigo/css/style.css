@@ -13,8 +13,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
 /* HEADER */
 
 .header {
-   background-color: #171515;
-   padding: 20px;
+   background-color: #1b0f00;
+   padding: 30px;
 }
 
 /*navbar*/
@@ -33,27 +33,26 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .itensDireita{
    position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 91%; /* 90% para deixa-lo com um gapzinho ali no final*/
+   left: 93%; /* 90% para deixa-lo com um gapzinho ali no final*/
 }
 
 .itensEsquerda{
    position: absolute;
-   right: 69%;
+   right: 65%;
 }
 
 .header .navbar .logo{
    position: absolute; 
    left: 50%;
    transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
-   list-style: none;
-   
+
 }
 
 .navbar a{
    text-decoration: none;
    font-weight: 500;
    letter-spacing: 1px;
-   color: #b0895c;
+   color: #b38148;
    font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -77,26 +76,24 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 .divSlogan h1{
-   color: #b0895c;
+   color: #b38148;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: 60px;
    font-weight: 400;
 }
 
 .divSlogan p{
-   color: #b0895c;
+   color: #b38148;
    font-size: 15px;
    max-width: 500px;/*limita até onde vai o texto*/
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.button{
-   position: absolute;
-   width: 220px;
-   height: 80px;
+button{
+   width: 200px;
+   height: 70px;
 
    border-radius: 50px;
-   top: 110%;
 }
 
 .button :hover{
@@ -104,7 +101,7 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 .divSlogan .button{
-   background-color: #b0895c;
+   background-color: #b38148;
    
    color: #171515;
    font-size: 30px;
@@ -115,19 +112,78 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 /*Sessão 1*/
 
-
-
 .sessao1{
    margin: 0;
-   
-  
-   padding: 60px 0;
+   background-color: #1b0f00;
+   padding: 60px;
 }
+
+.conteudo1{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.conteudo1 h1{
+   color: #b38148;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 60px;
+   font-weight: 400px;
+   text-align: center;
+   margin-bottom: 50px;
+}
+
+.textinho{
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   
+}
+
+
+.textinho h1{
+   color: #b38148;
+   font-size: 50px;
+   
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   text-align: justify;
+   text-align: center;
+}
+
+.textinho p{
+   color: #c8af91;
+   font-size: 30px;
+   max-width: 700px;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   text-align: justify;
+}
+   
+.textinho button{
+   background-color: #b38148;
+   color: #171515;
+   font-size: 30px;
+   font-weight: 500;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   display: flex;
+   align-items: center;
+  
+   
+}
+
+
 
 
 .conteudo2 img{
    max-width: 300px;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -141,6 +197,7 @@ body{ /*Isso tira as bordinhas brancas do site*/
    font-weight: 50px;
    color: #bd7536;
 }
+
 
 
 

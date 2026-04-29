@@ -13,7 +13,7 @@ body{ /*Isso tira as bordinhas brancas do site*/
 /* HEADER */
 
 .header {
-   background-color: #1b0f00;
+   background-color: #171515;
    padding: 30px;
 }
 
@@ -38,14 +38,14 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .itensEsquerda{
    position: absolute;
-   right: 65%;
+   right: 60%;
 }
 
 .header .navbar .logo{
    position: absolute; 
    left: 50%;
    transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
-
+   list-style: none;
 }
 
 .navbar a{
@@ -94,10 +94,13 @@ button{
    height: 70px;
 
    border-radius: 50px;
+
+   transition: 0.5s;
 }
 
 .button :hover{
    /*fazer oq o max falou de coisar quando passa o mouse*/
+   transform: scale(150.25);
 }
 
 .divSlogan .button{
@@ -127,7 +130,7 @@ button{
 .conteudo1 h1{
    color: #b38148;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   font-size: 60px;
+   font-size: 40px;
    font-weight: 400px;
    text-align: center;
    margin-bottom: 50px;

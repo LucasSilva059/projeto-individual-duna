@@ -1,0 +1,120 @@
+body{ /*Isso tira as bordinhas brancas do site*/
+   margin: 0;
+   padding: 0;
+}
+
+* { /*Isso zera todos os espaços padrão do navegador.*/
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+/* HEADER */
+
+.header {
+   background-color: #171515;
+   padding: 30px;
+}
+
+/*navbar*/
+.header .navbar {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative; 
+}
+
+.itensEsquerda, .itensDireita{
+   display: flex;
+   list-style: none; /*serve para tirar a bolinha do style*/
+   gap: 80px;
+}
+
+.itensDireita{
+   position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
+   left: 93%; /* 90% para deixa-lo com um gapzinho ali no final*/
+}
+
+.itensEsquerda{
+   position: absolute;
+   right: 60%;
+}
+
+.header .navbar .logo{
+   position: absolute; 
+   left: 50%;
+   transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
+   list-style: none;
+}
+
+.navbar a{
+   text-decoration: none;
+   font-weight: 500;
+   letter-spacing: 1px;
+   color: #b38148;
+   font-size: medium;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.sessao1{
+   margin: 0;
+   background-color: #1b0f00;
+   padding: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CARDS*/
+.cards{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   margin-top: 50px;
+}
+
+.card{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: aqua;
+   width: 250px;
+   height: 220px;
+   border-radius: 10%;
+   text-align: justify;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{
+   padding: 15px;
+   background-color: #171515;
+   display: flex;
+   justify-content: center;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-weight: 50px;
+   color: #bd7536;
+}

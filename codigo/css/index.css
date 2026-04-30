@@ -33,12 +33,13 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .itensDireita{
    position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 93%; /* 90% para deixa-lo com um gapzinho ali no final*/
+   left: 87%; /* 90% para deixa-lo com um gapzinho ali no final*/
+   
 }
 
 .itensEsquerda{
    position: absolute;
-   right: 60%;
+   right: 64%;
 }
 
 .header .navbar .logo{
@@ -117,7 +118,8 @@ button{
 
 .sessao1{
    margin: 0;
-   background-color: #1b0f00;
+   background: #29211b;
+   background: linear-gradient(0deg, rgba(41, 33, 27, 1) 28%, rgba(23, 21, 21, 1) 80%);
    padding: 60px;
 }
 

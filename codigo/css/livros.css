@@ -72,7 +72,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .sessao1{
    margin: 0;
-   background-color: #1b0f00;
+   background: #29211b;
+   background: linear-gradient(0deg, rgba(41, 33, 27, 1) 28%, rgba(23, 21, 21, 1) 40%);
    padding: 60px;
 }
 
@@ -100,11 +101,12 @@ body{ /*Isso tira as bordinhas brancas do site*/
    display: flex;
    flex-direction: column;
    align-items: center;
-   background-color: aqua;
+   background-color: #30200e;
    width: 250px;
    height: 220px;
-   border-radius: 10%;
    text-align: justify;
+   border: 10px;
+   border-color:#b38148 ;
 }
 
 

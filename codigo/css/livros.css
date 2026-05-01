@@ -32,12 +32,13 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .itensDireita{
    position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 93%; /* 90% para deixa-lo com um gapzinho ali no final*/
+   left: 87%; /* 90% para deixa-lo com um gapzinho ali no final*/
+   
 }
 
 .itensEsquerda{
    position: absolute;
-   right: 60%;
+   right: 64%;
 }
 
 .header .navbar .logo{
@@ -55,6 +56,17 @@ body{ /*Isso tira as bordinhas brancas do site*/
    font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.footer{
+   padding: 15px;
+   background-color: #171515;
+   display: flex;
+   justify-content: center;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-weight: 50px;
+   color: #bd7536;
+}
+
 
 
 

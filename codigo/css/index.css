@@ -58,6 +58,18 @@ body{ /*Isso tira as bordinhas brancas do site*/
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.footer{
+   padding: 15px;
+   background-color: #171515;
+   display: flex;
+   justify-content: center;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-weight: 50px;
+   color: #bd7536;
+}
+
+
+
 
 /*Banner*/
 .banner img{
@@ -119,7 +131,7 @@ button{
 .sessao1{
    margin: 0;
    background: #29211b;
-   background: linear-gradient(0deg, rgba(41, 33, 27, 1) 28%, rgba(23, 21, 21, 1) 80%);
+   background: linear-gradient(0deg, rgb(20, 13, 8) 28%, rgba(23, 21, 21, 1) 80%);
    padding: 60px;
 }
 
@@ -192,16 +204,6 @@ button{
 
 
 
-
-.footer{
-   padding: 15px;
-   background-color: #171515;
-   display: flex;
-   justify-content: center;
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   font-weight: 50px;
-   color: #bd7536;
-}
 
 
 

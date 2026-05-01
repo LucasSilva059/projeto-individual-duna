@@ -9,3 +9,6 @@ Teste de personalidade:
 	Como fazer?
 	-cada pergunta soma uma determinada quantidade de pontos dependendo da resposta, no fim os pontos são somados e levam ao resultado.
 -Após saber qual grupo voce faz parte, as cores do site mudam para o tema deste grupo.
+
+
+arrumar logo

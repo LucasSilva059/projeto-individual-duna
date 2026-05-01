@@ -1,11 +1,11 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Trials of Dune</title>
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/testePersonalidade.css">
 </head>
 
 <body> 
@@ -33,12 +33,116 @@
 
          <ul class="itensDireita">
             <li>
+               <a href="index.html">HOME</a>
+            </li>
+            <li>
                <a href="login.html">LOGIN</a>
             </li>
          </ul>
             
       </nav>
    </header>
+
+   
+
+      <div id="p1" class="pergunta ativa">
+         Pergunta 1
+         <br><button class="alternativa" onclick="fremen()">A - Liberdade </button>
+         <br><button class="alternativa" onclick="beneGesserit()">B - Conhecimento</button> 
+         <br><button class="alternativa" onclick="harkonnen()">C - Poder </button>
+         <br><button class="alternativa" onclick="atreides()">D - Honra </button>
+         <br><button class="alternativa" onclick="corrino()">E - Ordem </button>
+      </div>
+
+      <div id="p2" class="pergunta">
+         Pergunta 2
+      </div>
+
+      <div id="p3" class="pergunta">
+         Pergunta 3
+      </div>
+
+      <div id="p4" class="pergunta">
+         Pergunta 4
+      </div>
+
+      <div id="p5" class="pergunta">
+         Pergunta 5
+      </div>
+
+      <div id="p6" class="pergunta">
+         Pergunta 6
+      </div>
+
+      <div id="p7" class="pergunta">
+         Pergunta 7
+      </div>
+
+      <div id="p8" class="pergunta">
+         Pergunta 8
+      </div>
+
+      <div id="p9" class="pergunta">
+         Pergunta 9
+      </div>
+
+      <div id="p10" class="pergunta">
+         Pergunta 10
+      </div>
+
+      <button onclick="voltarPergunta()">Pergunta Anterior</button>
+      
+      <button onclick="proximaPergunta()">Próxima Pergunta</button>
+
+      <button onclick="mostrar()">Mostrar resultado</button>
+      
+</body>
+
+<script>
+   let pontos = 0;
+   let atual = 1;
+
+   function voltarPergunta() {
+   document.getElementById("p" + atual).classList.remove("ativa");
+
+   atual--;
+
+   document.getElementById("p" + atual).classList.add("ativa");
+   }
+
+   function proximaPergunta() {
+   document.getElementById("p" + atual).classList.remove("ativa");
+
+   atual++;
+
+   document.getElementById("p" + atual).classList.add("ativa");
+   }
+
+   fremen
+
+   function mostrar(){
+
+      if(pontos >= 0 && pontos <= 9){
+         // harkonnen
+      }
+      else if(pontos >= 10 && pontos <= 19){
+         //fremen
+      }
+      else if(pontos >= 20 && pontos <= 29){
+         //Bene Gesserit
+      }
+      else if(pontos >= 30 && pontos <= 39){
+         //Corrino
+      }
+      else if(pontos >= 40 && pontos <= 49){
+         //Atreides
+      }
+
+   }
+
+</script>
+
+
 
 
    

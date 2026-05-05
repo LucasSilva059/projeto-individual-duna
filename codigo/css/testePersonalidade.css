@@ -10,10 +10,11 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 /* HEADER */
-
 .header {
-   background-color: #171515;
-   padding: 30px;
+   background-color: #0b0806;
+   padding: 35px 20px;
+   border-bottom: solid 1px #b38148;
+   position: relative;
 }
 
 /*navbar*/
@@ -21,7 +22,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
    display: flex;
    align-items: center;
    justify-content: space-between;
-   position: relative; 
+   position: relative;
+   margin-top: 5px;
 }
 
 .itensEsquerda, .itensDireita{
@@ -46,19 +48,34 @@ body{ /*Isso tira as bordinhas brancas do site*/
    left: 50%;
    transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
    list-style: none;
+   
 }
 
 .navbar a{
+   display: inline-block;
    text-decoration: none;
    font-weight: 500;
    letter-spacing: 1px;
    color: #b38148;
    font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   transition: 0.2s;
 }
 
+.navbar a:hover{
+   transform: scale(1.05);
+   color: #a7937d;
+}
 
-
+.footer{
+   padding: 15px;
+   background-color: #0B0806;
+   display: flex;
+   justify-content: center;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-weight: 50px;
+   color: #bd7536;
+}
 
 
 

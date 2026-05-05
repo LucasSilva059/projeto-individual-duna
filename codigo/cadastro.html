@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Trials of Dune</title>
+   <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body> 
+   <div class="fundoHeader"></div>
+   <header class="header"><!-- header -->
+      
+      <nav class="navbar"><!-- navbar -->
+         
+         <ul class="itensEsquerda">
+            <li>
+               <a href="filmes.html">FILMES</a>
+            </li>
+             <li>
+               <a href="livros.html">LIVROS</a>
+            </li>
+            <li>
+               <a href="testePersonalidade.html">TESTE DE PERSONALIDADE</a>
+            </li>
+         </ul>
+           
+         <li class="logo">
+            <a href="index.html">
+               <img style="width: 95px;" src="assets/imgs/logo 2.png" alt="Logo TOD">
+            </a>            
+         </li>
+
+         <ul class="itensDireita">
+            <li>
+               <a href="index.html">HOME</a>
+            </li>
+            <li>
+               <a href="login.html">LOGIN</a>
+            </li>
+         </ul>
+            
+      </nav>
+   </header>
+
+
+
+
+<div class="login">
+      Nome Completo *<br>
+      <input type="text" id="inp_nome"><br><br>
+
+      Email *<br>
+      <input type="text" id="inp_email"><br><br>
+
+      Senha *<br>
+      <input type="text" id="inp_senha"><br><br>
+
+      Confirmar Senha *<br>
+      <input type="text" id="inp_confSenha"><br><br>
+
+      <button onclick="registrar()">Registrar</button><br><br>
+
+      ou<br><br>
+
+      Já tem uma conta?<br>
+
+      <button onclick="logar()">Fazer Login</button>
+   </div>
+   
+</body>
+
+<script>
+   function logar(){
+      window.location.href = "login.html";
+   }
+</script>

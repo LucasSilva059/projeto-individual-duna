@@ -53,12 +53,19 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 .navbar a{
+   display: inline-block;
    text-decoration: none;
    font-weight: 500;
    letter-spacing: 1px;
    color: #b38148;
    font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   transition: 0.2s;
+}
+
+.navbar a:hover{
+   transform: scale(1.05);
+   color: #a7937d;
 }
 
 .footer{
@@ -86,9 +93,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 .divSlogan{
    position: absolute;
-   top: 40%;
-   left: 5%; /* empurra pra dentro da tela */
-   transform: translateY(-50%);
+   top: 10%;
+   padding: 80px;
 }
 
 .divSlogan h1{
@@ -99,8 +105,9 @@ body{ /*Isso tira as bordinhas brancas do site*/
 }
 
 .divSlogan p{
+   margin-top: 15px;
    color: #b38148;
-   font-size: 15px;
+   font-size: 17px;
    max-width: 500px;/*limita até onde vai o texto*/
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -108,97 +115,109 @@ body{ /*Isso tira as bordinhas brancas do site*/
 button{
    width: 200px;
    height: 70px;
-
-   border-radius: 50px;
-
-   transition: 0.5s;
 }
 
-.button :hover{
-   /*fazer oq o max falou de coisar quando passa o mouse*/
-   transform: scale(150.25);
-}
 
 .divSlogan .button{
-   background-color: #b38148;
-   
-   color: #0B0806;
+   margin-top: 20px;
+   background-color: #0b0806;
+   color: #b38148;
+   border: solid 1px #b38148;
    font-size: 30px;
    font-weight: 500;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   transition: 0.5s;
 }
+
+.divSlogan .button:hover{
+   /*fazer oq o max falou de coisar quando passa o mouse*/
+   transform: scale(1.05);
+   background-color: #14100c;
+   color: #a7937d;
+   border-color: #a7937d;
+}
+
+
 
 
 /*Sessão 1*/
 
 .sessao1{
    margin: 0;
-   
-   background: linear-gradient(0deg, rgba(37, 30, 26, 1) 5%, rgba(11, 8, 6, 1) 65%);
+   background: linear-gradient(0deg, rgb(17, 14, 12) 5%, rgba(11, 8, 6, 1) 65%);
 }
 
 
-
-
-.conteudo1{
+.textoDuna{
    display: flex;
-   flex-direction: column;
+   flex-direction: column; 
    align-items: center;
 }
 
-.conteudo1 h1{
+.textoDuna h1{
+   margin-top: 100px;
    color: #b38148;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   font-size: 40px;
+   font-size: 60px;
    font-weight: 400px;
    text-align: center;
    margin-bottom: 50px;
 }
 
-.textinho{
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-}
-
-
-.textinho h1{
-   color: #b38148;
-   font-size: 50px;
+.textoDuna p{
    
+   color: #a7937d;
+   font-size: 30px;
+   max-width: 1200px;
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   text-align: justify;
    text-align: center;
 }
 
-.textinho p{
-   color: #c8af91;
-   font-size: 30px;
-   max-width: 700px;
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   text-align: justify;
-}
-   
-.textinho button{
-   background-color: #b38148;
-   color: #0B0806;
-   font-size: 30px;
-   font-weight: 500;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+.cards{
+   margin-top: 80px;
    display: flex;
-   align-items: center;
-  
-   
+   justify-content: space-around;
 }
 
-
-
-
-.conteudo2 img{
-   max-width: 300px;
+.card{
+   width: 450px;
+   height: 250px;
+   margin-bottom: 50px;
+   padding: 30px;
+   background-color: #0b0806;
+   border: solid 1px #b38148;
+   transition: 0.5s;
+   color: #a7937d;
 }
 
+.card h1{
+   color: #b38148;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 35px;
+   transition: 0.5s;
+}
 
+.card p{
+   margin-top: 20px;
+   color: #a7937d;
+   font-size: 25px;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.link{
+   text-decoration: none;
+}
+
+.card:hover{
+   transform: scale(1.05);
+   background-color: #14100c;
+   border-color: #a7937d;
+}
+
+.card h1:hover{
+   color: #a7937d;
+}
 
 
 

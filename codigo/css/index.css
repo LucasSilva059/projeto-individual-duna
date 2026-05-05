@@ -16,6 +16,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
    padding: 35px 20px;
    border-bottom: solid 1px #b38148;
    position: relative;
+   width: 100%;
+   top: 0;
 }
 
 /*navbar*/

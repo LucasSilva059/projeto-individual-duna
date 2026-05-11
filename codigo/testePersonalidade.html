@@ -8,28 +8,28 @@
    <link rel="stylesheet" href="css/testePersonalidade.css">
 </head>
 
-<body> 
+<body id="body" onload="onloadEsconder()">
    <div class="fundoHeader"></div>
    <header class="header"><!-- header -->
-      
+
       <nav class="navbar"><!-- navbar -->
-         
+
          <ul class="itensEsquerda">
             <li>
                <a href="filmes.html">FILMES</a>
             </li>
-             <li>
+            <li>
                <a href="livros.html">LIVROS</a>
             </li>
             <li>
                <a href="testePersonalidade.html">TESTE DE PERSONALIDADE</a>
             </li>
          </ul>
-           
+
          <li class="logo">
             <a href="index.html">
                <img style="width: 95px;" src="assets/imgs/logo 2.png" alt="Logo TOD">
-            </a>            
+            </a>
          </li>
 
          <ul class="itensDireita">
@@ -40,110 +40,673 @@
                <a href="login.html">LOGIN</a>
             </li>
          </ul>
-            
+
       </nav>
    </header>
 
-   
+   <section class="sessao1">
 
-      <div id="p1" class="pergunta ativa">
-         Pergunta 1
-         <br><button class="alternativa" onclick="fremen()">A - Liberdade </button>
-         <br><button class="alternativa" onclick="beneGesserit()">B - Conhecimento</button> 
-         <br><button class="alternativa" onclick="harkonnen()">C - Poder </button>
-         <br><button class="alternativa" onclick="atreides()">D - Honra </button>
-         <br><button class="alternativa" onclick="corrino()">E - Ordem </button>
+      <div id="iniciarTeste">
+         <h1 class="cabecalho">Descubra sua Casa em Duna</h1>
+         <p class="textinho">Responda a algumas perguntas e descubra qual Casa Noble você pertence e qual personagem do
+            universo de Duna
+            melhor representa sua personalidade.</p>
+         <button class="button" onclick="iniciarTeste()">Iniciar Teste</button>
       </div>
 
-      <div id="p2" class="pergunta">
-         Pergunta 2
+      <div id="teste">
+         <div id="infoQuestao">
+            <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+               questões.</span>
+         </div>
+
+         <div id="perguntaDaQuestaoAtual">
+            <span id="spanQuestaoExibida" class="text-bold"></span>
+         </div>
+
+         <div id="infoAlternativas">
+            <span><em>Escolha uma opção dentre as abaixo:</em></span>
+         </div>
+
+         <div id="opcoes">
+            <span>
+               <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" />
+               <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+               <!-- o 'for' fala onde é que essa label vai estar -->
+            </span>
+
+            <span>
+               <input type="radio" id="segundaOpcao" name="option" value="alternativaB" />
+               <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+            </span>
+
+            <span>
+               <input type="radio" id="terceiraOpcao" name="option" value="alternativaC" />
+               <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+            </span>
+
+            <span>
+               <input type="radio" id="quartaOpcao" name="option" value="alternativaD" />
+               <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+            </span>
+
+            <span>
+               <input type="radio" id="quintaOpcao" name="option" value="alternativaE" />
+               <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+            </span>
+         </div>
+
+         <div id="botoes">
+            <button class="botao" id="btn_voltar" onclick="voltarPergunta()" disabled>Pergunta Anterior</button>
+
+            <button class="botao" id="btn_submeter" onclick="submeterResposta()" disabled>Submeter Resposta</button>
+
+            <button class="botao" id="btn_proxima" onclick="proximaPergunta()" disabled>Próxima Pergunta</button>
+         </div>
+         <div id="botao_mostrar">
+            <button class="botao" id="btn_mostrar" onclick="mostrarResultado()" disabled>Mostrar resultado</button>
+         </div>
+
       </div>
 
-      <div id="p3" class="pergunta">
-         Pergunta 3
+      <div id="resultado">
+         <h1 id="h1_conteudoResultado"></h1>
+         <p id="p_resultado"></p>
+
+         <!-- 
+         <div id="div_resultado">
+            <div id="personagem1">
+               <div id="fotoP1"></div>
+               <h1 id="nomeP1"></h1>
+            </div>
+            <div id="personagem2">
+               <div id="fotoP2"></div>
+               <h1 id="nomeP2"></h1>
+            </div>
+         </div>
+         -->
+
+         <button class="botao" id="tentarNovamente" onclick="tentarNovamente()">Refazer Teste</button>
       </div>
+   </section>
 
-      <div id="p4" class="pergunta">
-         Pergunta 4
-      </div>
+   <footer class="footer">
+      <p>© 2026 TrialsOfDune.</p>
+   </footer>
 
-      <div id="p5" class="pergunta">
-         Pergunta 5
-      </div>
 
-      <div id="p6" class="pergunta">
-         Pergunta 6
-      </div>
-
-      <div id="p7" class="pergunta">
-         Pergunta 7
-      </div>
-
-      <div id="p8" class="pergunta">
-         Pergunta 8
-      </div>
-
-      <div id="p9" class="pergunta">
-         Pergunta 9
-      </div>
-
-      <div id="p10" class="pergunta">
-         Pergunta 10
-      </div>
-
-      <button onclick="voltarPergunta()">Pergunta Anterior</button>
-      
-      <button onclick="proximaPergunta()">Próxima Pergunta</button>
-
-      <button onclick="mostrar()">Mostrar resultado</button>
-      
 </body>
 
 <script>
-   let pontos = 0;
-   let atual = 1;
 
+   const listaDeQuestoes = [
+
+      {
+         pergunta: "Qual qualidade você mais admira?",
+         alternativaA: "Lealdade",
+         alternativaB: "Determinação",
+         alternativaC: "Disciplina",
+         alternativaD: "Coragem",
+         alternativaE: "Sabedoria",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Se alguém te desrespeita, você...",
+         alternativaA: "Tenta resolver de forma madura",
+         alternativaB: "Responde para não sair por baixo",
+         alternativaC: "Mantém postura firme",
+         alternativaD: "Espera o momento certo para agir",
+         alternativaE: "Usa inteligência para virar o jogo depois",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      },
+
+      {
+         pergunta: "Como você toma decisões importantes?",
+         alternativaA: "Pelo que considera correto",
+         alternativaB: "Pelo que oferece mais vantagens",
+         alternativaC: "Pela lógica e estabilidade",
+         alternativaD: "Pela experiência e instinto",
+         alternativaE: "Confia mais na própria percepção",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 4,
+      },
+
+      {
+         pergunta: "Você ganha muito dinheiro inesperadamente. O que faz?",
+         alternativaA: "Ajuda pessoas importantes para você",
+         alternativaB: "Investe pensando em crescer mais",
+         alternativaC: "Planeja cuidadosamente o futuro",
+         alternativaD: "Prefere garantir segurança antes",
+         alternativaE: "Procura usar isso da forma mais inteligente possível",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Qual tipo de líder você mais respeita?",
+         alternativaA: "O que inspira confiança",
+         alternativaB: "O que demonstra força",
+         alternativaC: "O que mantém organização",
+         alternativaD: "O que enfrenta dificuldades junto do povo",
+         alternativaE: "O que entende profundamente as pessoas",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      },
+
+      {
+         pergunta: "O que define sucesso para você?",
+         alternativaA: "Ser respeitado pelas pessoas",
+         alternativaB: "Ter influência e reconhecimento",
+         alternativaC: "Construir algo duradouro",
+         alternativaD: "Superar dificuldades",
+         alternativaE: "Ter domínio sobre si mesmo",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 3,
+      },
+
+      {
+         pergunta: "Você descobre que um amigo mentiu para você. O que faz?",
+         alternativaA: "Conversa para entender o motivo",
+         alternativaB: "Perde parte da confiança imediatamente",
+         alternativaC: "Tenta resolver racionalmente",
+         alternativaD: "Dá um tempo antes de agir",
+         alternativaE: "Tenta entender o motivo por trás da mentira",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Qual animal mais te representa?",
+         alternativaA: "Lobo",
+         alternativaB: "Pantera",
+         alternativaC: "Leão",
+         alternativaD: "Camaleão",
+         alternativaE: "Coruja",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Qual dessas frases parece mais verdadeira?",
+         alternativaA: "O caráter de alguém vale mais que seu poder",
+         alternativaB: "Os fins justificam os meios",
+         alternativaC: "Sem ordem, tudo desmorona",
+         alternativaD: "Prefiro a liberdade, mesmo que ela tenha um preço",
+         alternativaE: "Quem controla a si mesmo já venceu metade da batalha",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      },
+
+      {
+         pergunta: "Se sua vida tivesse uma cor dominante, qual seria?",
+         alternativaA: "Verde",
+         alternativaB: "Vermelho",
+         alternativaC: "Dourado",
+         alternativaD: "Marrom",
+         alternativaE: "Preto",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Quando algo sai do controle, você...",
+         alternativaA: "Tenta manter todos unidos",
+         alternativaB: "Assume o comando rapidamente",
+         alternativaC: "Procura reorganizar a situação",
+         alternativaD: "Se adapta ao caos",
+         alternativaE: "Mantém a calma mesmo sob pressão",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "Você precisa tomar uma decisão difícil rapidamente.",
+         alternativaA: "Escolhe o que parece mais justo",
+         alternativaB: "Escolhe o que oferece vantagem",
+         alternativaC: "Escolhe a opção mais segura",
+         alternativaD: "Segue o instinto",
+         alternativaE: "Confia na própria intuição",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      },
+
+      {
+         pergunta: "Qual dessas armas você escolheria?",
+         alternativaA: "Uma espada lendária",
+         alternativaB: "Algo brutal e intimidador",
+         alternativaC: "Um exército organizado",
+         alternativaD: "Uma faca simples e confiável",
+         alternativaE: "A própria mente",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      },
+
+      {
+         pergunta: "Qual desses elementos mais combina com você?",
+         alternativaA: "Água",
+         alternativaB: "Fogo",
+         alternativaC: "Ouro",
+         alternativaD: "Terra",
+         alternativaE: "Sombra",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 1,
+      },
+
+      {
+         pergunta: "O que você mais teme?",
+         alternativaA: "Falhar com quem confia em você",
+         alternativaB: "Ser visto como fraco",
+         alternativaC: "Perder o controle da situação",
+         alternativaD: "Perder sua liberdade",
+         alternativaE: "Perder o controle sobre si mesmo",
+
+         resultadoA: "atreides",
+         resultadoB: "harkonnen",
+         resultadoC: "corrino",
+         resultadoD: "fremen",
+         resultadoE: "beneGesserit",
+
+         peso: 2,
+      }
+
+   ]
+
+   let pontuacoes = {
+      atreides: 0,
+      harkonnen: 0,
+      corrino: 0,
+      fremen: 0,
+      beneGesserit: 0
+   }
+
+   let numeroDaQuestaoAtual = 0
+   let pontuacaoFinal = 0
+   let resultadoFinal = ''
+   let quantidadeDeQuestoes = listaDeQuestoes.length
+
+
+   // funcao para esconder a div 'teste'
+   function onloadEsconder() {
+      document.getElementById('teste').style.display = 'none';
+      document.getElementById('resultado').style.display = 'none';
+   }
+
+   /* funcao para mostrar a div 'teste', esconder a div 'iniciarTeste'*/
+   function iniciarTeste() {
+      document.getElementById('teste').style.display = 'flex';
+      document.getElementById('iniciarTeste').style.display = 'none';
+
+      document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes // ele procura qtdQuestoes no HTML e fala que atribui o valor do quantidadeDeQuestoes
+
+      preencherHTMLcomQuestaoAtual()
+
+      btn_voltar.disabled = true
+      btn_submeter.disabled = false
+      btn_proxima.disabled = true
+      btn_mostrar.style.display = 'none'
+   }
+
+   // funcao para colocar a pergunta na tela
+   function preencherHTMLcomQuestaoAtual() {
+      habilitarAlternativas(true);
+
+      const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+
+      document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = numeroDaQuestaoAtual + 1 // +1 pq o index começa em 0
+
+      document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+
+      document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+
+      document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+
+      document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+
+      document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+      document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
+   }
+
+   // no botao de voltar pergunta
    function voltarPergunta() {
-   document.getElementById("p" + atual).classList.remove("ativa");
+      btn_proxima.disabled = true
+      btn_submeter.disabled = false
 
-   atual--;
+      numeroDaQuestaoAtual--
 
-   document.getElementById("p" + atual).classList.add("ativa");
+      if (numeroDaQuestaoAtual <= 0) {
+         numeroDaQuestaoAtual = 0
+         btn_voltar.disabled = true
+      }
+
+      desmarcarRadioButtons()
+
+      preencherHTMLcomQuestaoAtual()
    }
 
+   function submeterResposta() {
+      const options = document.getElementsByName("option"); // recupera alternativas no html
+
+      let checado = false
+      for (let i = 0; i < options.length; i++) {
+         if (options[i].checked) {
+            checado = true
+            break
+         }
+      }
+
+      if (!checado) {
+         alert("Não há alternativas escolhidas. Escolha uma opção.")
+      } else {
+         btn_submeter.disabled = true;
+         btn_voltar.disabled = true;
+         btn_proxima.disabled = false;
+
+         habilitarAlternativas(false)
+
+         checarResposta()
+
+         // ultima questão desabilidta ir pro proximo
+         if (numeroDaQuestaoAtual == (quantidadeDeQuestoes - 1)) {
+            btn_proxima.disabled = true;
+            btn_mostrar.disabled = false;
+            document.getElementById('btn_mostrar').style.display = 'block';
+         }
+      }
+   }
+
+   // funcao para avançar a pergunta
    function proximaPergunta() {
-   document.getElementById("p" + atual).classList.remove("ativa");
+      btn_proxima.disabled = true
+      btn_submeter.disabled = false
+      btn_voltar.disabled = false
 
-   atual++;
+      numeroDaQuestaoAtual++
 
-   document.getElementById("p" + atual).classList.add("ativa");
+      desmarcarRadioButtons()
+
+      // verifica se ainda tem questões sobrando
+      if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+         preencherHTMLcomQuestaoAtual()
+      }
+      else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+         alert("Atenção... a próxima é a ultima questão!")
+         preencherHTMLcomQuestaoAtual()
+
+      } else {
+         mostrarResultado()
+      }
    }
 
-   fremen
+   /*Essa parte do código pega o valor que foi enviado para a função e troca ele pelo contrário. Se receber true, transforma em false. Se receber false, transforma em true. Depois, esse novo valor é usado no .disabled dos botões. Como .disabled = true desativa um botão e .disabled = false ativa, a função serve basicamente para ligar ou desligar as alternativas da pergunta.*/
+   function habilitarAlternativas(trueOrFalse) {
+      let opcaoEscolhida = trueOrFalse ? false : true
 
-   function mostrar(){
+      primeiraOpcao.disabled = opcaoEscolhida
+      segundaOpcao.disabled = opcaoEscolhida
+      terceiraOpcao.disabled = opcaoEscolhida
+      quartaOpcao.disabled = opcaoEscolhida
+      quintaOpcao.disabled = opcaoEscolhida
 
-      if(pontos >= 0 && pontos <= 9){
-         // harkonnen
+   }
+
+   function tentarNovamente() {
+      // atualiza a página
+      window.location.reload()
+   }
+
+   function desmarcarRadioButtons() {
+      const options = document.getElementsByName("option");
+      for (let i = 0; i < options.length; i++) {
+         options[i].checked = false;
       }
-      else if(pontos >= 10 && pontos <= 19){
-         //fremen
+   }
+
+   function checarResposta() {
+      const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+      const options = document.getElementsByName("option")
+      let respostaEscolhida = false
+
+      options.forEach((option) => {
+
+         if (option.checked) {
+            respostaEscolhida = true
+
+            // ALTERNATIVA A
+            if (option.value == "alternativaA") {
+               pontuacoes[questaoAtual.resultadoA] += questaoAtual.peso
+            }
+
+            // ALTERNATIVA B
+            else if (option.value == "alternativaB") {
+               pontuacoes[questaoAtual.resultadoB] += questaoAtual.peso
+            }
+
+            // ALTERNATIVA C
+            else if (option.value == "alternativaC") {
+               pontuacoes[questaoAtual.resultadoC] += questaoAtual.peso
+            }
+
+            // ALTERNATIVA D
+            else if (option.value == "alternativaD") {
+               pontuacoes[questaoAtual.resultadoD] += questaoAtual.peso
+            }
+
+            // ALTERNATIVA E
+            else if (option.value == "alternativaE") {
+               pontuacoes[questaoAtual.resultadoE] += questaoAtual.peso
+            }
+         }
+      })
+
+      // verifica se escolheu algo
+      if (!respostaEscolhida) {
+         alert("Escolha uma alternativa.")
+         return
       }
-      else if(pontos >= 20 && pontos <= 29){
-         //Bene Gesserit
+   }
+
+   function mostrarResultado() {
+      let mensagem = ""
+      let nomeP1 = ""
+      let nomeP2 = ""
+      let fotoP1 = ""
+      let fotoP2 = ""
+
+      document.getElementById('resultado').style.display = 'block';
+      document.getElementById('teste').style.display = 'none';
+
+      document.getElementById('tentarNovamente').style.display = 'block';
+
+
+      if (
+         pontuacoes.atreides > pontuacoes.harkonnen &&
+         pontuacoes.atreides > pontuacoes.corrino &&
+         pontuacoes.atreides > pontuacoes.fremen &&
+         pontuacoes.atreides > pontuacoes.beneGesserit
+      ) {
+         document.getElementById('resultado').style.border = '3px solid #29572b'
+         document.getElementById('h1_conteudoResultado').style.color = '#29572b'
+         resultadoFinal = 'Casa Atreides';
+         mensagem = 'Nobre, honrada e leal. A Casa Atreides é conhecida por sua liderança justa, coragem e forte senso de responsabilidade. Você provavelmente é alguém que valoriza a confiança, a empatia e o respeito pelas pessoas ao seu redor. Em vez de buscar poder a qualquer custo, prefere conquistar admiração através de suas atitudes e princípios.<br> Assim como os Atreides, você tende a assumir responsabilidades naturalmente e costuma proteger aqueles que considera importantes. Sua força não está apenas em liderança, mas também na capacidade de inspirar e unir pessoas mesmo em momentos difíceis.';
+
+         nomeP1 = "Paul Atreides";
+         nomeP2 = "Leto Atreides";
+
+         fotoP1 = `<img src="assets/imgs/paul atreides.jpg" alt="Paul Atreides">`
+         fotoP2 = `<img src="assets/imgs/leto atreides.jpg" alt="Leto Atreides">`
       }
-      else if(pontos >= 30 && pontos <= 39){
-         //Corrino
+      else if (
+         pontuacoes.harkonnen > pontuacoes.atreides &&
+         pontuacoes.harkonnen > pontuacoes.corrino &&
+         pontuacoes.harkonnen > pontuacoes.fremen &&
+         pontuacoes.harkonnen > pontuacoes.beneGesserit
+      ) {
+         document.getElementById('resultado').style.border = '3px solid #471414'
+         document.getElementById('h1_conteudoResultado').style.color = '#471414'
+         resultadoFinal = 'Casa Harkonnen';
+         mensagem = 'Ambiciosa, intensa e implacável. A Casa Harkonnen representa força, domínio e a busca incessante por poder. Você provavelmente possui uma personalidade marcante, competitiva e determinada, sempre tentando alcançar seus objetivos independentemente dos obstáculos.<br> Assim como os Harkonnen, você não gosta de parecer fraco e prefere manter o controle das situações. Sua presença costuma ser forte e intimidadora, e sua ambição pode fazer com que vá além do que os outros considerariam possível.';
+
+         nomeP1 = "Vladimir Harkonnen";
+         nomeP2 = "Feyd-Rautha";
+
+         fotoP1 = `<img src="assets/imgs/Vladimir Harkonnen.jpg" alt="Vladimir Harkonnen">`
+         fotoP2 = `<img src="assets/imgs/feyd-rautha.jpg" alt="Feyd-Rautha">`
       }
-      else if(pontos >= 40 && pontos <= 49){
-         //Atreides
+      else if (
+         pontuacoes.corrino > pontuacoes.atreides &&
+         pontuacoes.corrino > pontuacoes.harkonnen &&
+         pontuacoes.corrino > pontuacoes.fremen &&
+         pontuacoes.corrino > pontuacoes.beneGesserit
+      ) {
+         document.getElementById('resultado').style.border = '3px solid #b66522'
+         document.getElementById('h1_conteudoResultado').style.color = '#b66522'
+         resultadoFinal = 'Casa Corrino';
+         mensagem = 'Autoritária, estratégica e disciplinada. A Casa Corrino governa o império através da ordem, da tradição e do controle político. Você provavelmente é alguém que valoriza estabilidade, organização e planejamento, preferindo agir com cautela antes de tomar grandes decisões.<br> Assim como os Corrino, você entende a importância da autoridade e acredita que liderança exige responsabilidade e equilíbrio. Em muitos momentos, prefere pensar no longo prazo e manter tudo funcionando corretamente ao invés de agir por impulso.';
+
+         nomeP1 = " Imperador Shaddam IV";
+         nomeP2 = "Princesa Irulan";
+
+         fotoP1 = `<img src="assets/imgs/shaddam iv.jpg" alt="">`
+         fotoP2 = `<img src="assets/imgs/irulan.jpg" alt="">`
       }
+      else if (
+         pontuacoes.fremen > pontuacoes.atreides &&
+         pontuacoes.fremen > pontuacoes.harkonnen &&
+         pontuacoes.fremen > pontuacoes.corrino &&
+         pontuacoes.fremen > pontuacoes.beneGesserit
+      ) {
+         document.getElementById('resultado').style.border = '3px solid #a5915d'
+         document.getElementById('h1_conteudoResultado').style.color = '#a5915d'
+         resultadoFinal = 'Povo Fremen';
+         mensagem = 'Resistentes, determinados e profundamente conectados ao ambiente em que vivem. Os Fremen aprenderam a sobreviver nas condições mais extremas de Arrakis, desenvolvendo força física e mental para enfrentar qualquer desafio. Você provavelmente é alguém adaptável, persistente e capaz de continuar seguindo em frente mesmo em situações difíceis.<br> Assim como os Fremen, você valoriza liberdade, união e sobrevivência. Sua maior força está na resiliência e na capacidade de se manter firme quando tudo parece estar contra você.';
+
+         nomeP1 = "Chani Kynes";
+         nomeP2 = "Stilgar Ben Fifrawi";
+
+         fotoP1 = `<img src="assets/imgs/chani.jpg" alt="Chani Kynes">`
+         fotoP2 = `<img src="assets/imgs/stilgar.jpg" alt="Stilgar Ben Fifrawi">`
+      }
+      else if (
+         pontuacoes.beneGesserit > pontuacoes.atreides &&
+         pontuacoes.beneGesserit > pontuacoes.harkonnen &&
+         pontuacoes.beneGesserit > pontuacoes.corrino &&
+         pontuacoes.beneGesserit > pontuacoes.fremen
+      ) {
+         document.getElementById('resultado').style.border = '3px solid #483D8B'
+         document.getElementById('h1_conteudoResultado').style.color = '#483D8B'
+         resultadoFinal = 'Irmandade Bene Gesserit';
+         mensagem = 'Misteriosas, inteligentes e extremamente estratégicas. As Bene Gesserit dedicam suas vidas ao conhecimento, ao autocontrole e à manipulação dos acontecimentos ao seu redor. Você provavelmente é alguém observador, analítico e cuidadoso com suas decisões, preferindo pensar antes de agir. <br>Assim como as Bene Gesserit, você entende que conhecimento e inteligência podem ser armas mais poderosas do que força física. Sua capacidade de analisar pessoas e situações faz com que consiga enxergar detalhes que muitos ignoram.';
+
+         nomeP1 = "Jessica Atreides";
+         nomeP2 = "Gaius Helen Mohiam";
+
+         fotoP1 = `<img src="assets/imgs/jessica.jpg" alt="Jessica Atreides">`
+         fotoP2 = `<img src="assets/imgs/gaius.jpg" alt="Gaius Helen Mohiam">`
+      }
+
+      console.log(`Voce pertence a ` + resultadoFinal);
+
+      console.log(pontuacoes)
+
+      h1_conteudoResultado.innerHTML = `
+         ${resultadoFinal}`;
+      p_resultado.innerHTML = `
+         ${mensagem}`;
+
+      //nomeP1.innerHTML = nomeP1
+      //nomeP2.innerHTML = nomeP2
+
+      //personagem1.innerHTML = fotoP1
+      //personagem2.innerHTML = fotoP2
 
    }
 
 </script>
-
-
-
-
-   

@@ -122,7 +122,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
    color: #a7937d;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: 25px;
-
+   text-align: center;
+   padding: 10px;
 }
 
 .card{

@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Trials of Dune</title>
-   <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="css/cadastro.css">
 </head>
 
 <body>
@@ -45,22 +45,31 @@
    </header>
 
 
+   <section id="sessao1">
+      <div class="cabecalho" id="cabecalho">
+         <h1>TRIALS OF DUNE</h1>
+         <p>Entre no universo de Arrakis</p>
+      </div>
 
-   <div class="login">
-      Email *<br>
-      <input type="text" id="inp_email"><br><br>
+      <div class="cadastro" id="login">
+         <h1>Login</h1>
 
-      Senha *<br>
-      <input type="text" id="inp_senha"><br><br>
+         <div class="inputs" id="inputs">
+            <h4 class="tituloInput">Email *</h4>
+            <input class="input" type="text" id="inp_email">
 
-      <button onclick="entrar()">Entrar</button><br><br>
+            <h4 class="tituloInput">Senha *</h4>
+            <input class="input" type="text" id="inp_senha"><br><br>
 
-      ou<br><br>
+         </div>
 
-      Ainda não tem uma conta?<br>
+         <button onclick="entrar()">Entrar</button>
 
-      <button onclick="criarConta()">Criar Conta</button>
-   </div>
+         <p id="aindaNaoTemConta">Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+
+      </div>
+   </section>
 
 </body>
 

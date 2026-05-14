@@ -1,9 +1,11 @@
-body{ /*Isso tira as bordinhas brancas do site*/
+body {
+   /*Isso tira as bordinhas brancas do site*/
    margin: 0;
    padding: 0;
 }
 
-* { /*Isso zera todos os espaços padrão do navegador.*/
+* {
+   /*Isso zera todos os espaços padrão do navegador.*/
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -29,32 +31,35 @@ body{ /*Isso tira as bordinhas brancas do site*/
 .itensEsquerda, .itensDireita{
    display: flex;
    list-style: none; /*serve para tirar a bolinha do style*/
-   gap: 80px;
+   gap: 4vw;
 }
 
-.itensDireita{
-   position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 87%; /* 90% para deixa-lo com um gapzinho ali no final*/
-   
+.itensDireita {
+   position: absolute;
+   /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
+   left: 87%;
+   /* 90% para deixa-lo com um gapzinho ali no final*/
+
 }
 
-.itensEsquerda{
+.itensEsquerda {
    position: absolute;
    right: 64%;
 }
 
-.header .navbar .logo{
-   position: absolute; 
+.header .navbar .logo {
+   position: absolute;
    left: 50%;
-   transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
+   transform: translateX(-50%);
+   /*junto com o left, centraliza a logo exatamente no meio*/
    list-style: none;
-   
+
 }
 
-.navbar a{
+.navbar a {
    display: inline-block;
    text-decoration: none;
-   font-weight: 500;
+   font-weight: 600;
    letter-spacing: 1px;
    color: #b38148;
    font-size: medium;
@@ -62,12 +67,12 @@ body{ /*Isso tira as bordinhas brancas do site*/
    transition: 0.2s;
 }
 
-.navbar a:hover{
+.navbar a:hover {
    transform: scale(1.05);
    color: #a7937d;
 }
 
-.footer{
+.footer {
    padding: 15px;
    background-color: #0B0806;
    display: flex;
@@ -76,7 +81,6 @@ body{ /*Isso tira as bordinhas brancas do site*/
    font-weight: 50px;
    color: #bd7536;
 }
-
 
 
 
@@ -104,16 +108,24 @@ body{ /*Isso tira as bordinhas brancas do site*/
 .card{
    display: flex;
    flex-direction: column;
-   width: 850px;
-   height: 450px;
-   margin-bottom: 50px;
-   padding: 30px;
+   width: 60vw;
+   height: 70vh;
+   margin-bottom: 10vh;
+   padding: 3vw;
    background-color: #0b0806;
    border: solid 1px #b38148;
    transition: 0.5s;
    color: #a7937d;
 }
 
+.conteudoCard{
+   display: flex;
+   justify-content: space-between;
+}
+
+.conteudoCard img{
+   display: flex;
+}
 
 .card h1{
    color: #b38148;
@@ -127,6 +139,8 @@ body{ /*Isso tira as bordinhas brancas do site*/
    color: #a7937d;
    font-size: 25px;
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   max-width: 36vw;
+   text-align: justify;
 }
 
 

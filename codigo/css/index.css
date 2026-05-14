@@ -1,10 +1,11 @@
-
-body{ /*Isso tira as bordinhas brancas do site*/
+body {
+   /*Isso tira as bordinhas brancas do site*/
    margin: 0;
    padding: 0;
 }
 
-* { /*Isso zera todos os espaços padrão do navegador.*/
+* {
+   /*Isso zera todos os espaços padrão do navegador.*/
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -16,8 +17,6 @@ body{ /*Isso tira as bordinhas brancas do site*/
    padding: 35px 20px;
    border-bottom: solid 1px #b38148;
    position: relative;
-   width: 100%;
-   top: 0;
 }
 
 /*navbar*/
@@ -32,32 +31,35 @@ body{ /*Isso tira as bordinhas brancas do site*/
 .itensEsquerda, .itensDireita{
    display: flex;
    list-style: none; /*serve para tirar a bolinha do style*/
-   gap: 80px;
+   gap: 4vw;
 }
 
-.itensDireita{
-   position: absolute; /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 87%; /* 90% para deixa-lo com um gapzinho ali no final*/
-   
+.itensDireita {
+   position: absolute;
+   /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
+   left: 87%;
+   /* 90% para deixa-lo com um gapzinho ali no final*/
+
 }
 
-.itensEsquerda{
+.itensEsquerda {
    position: absolute;
    right: 64%;
 }
 
-.header .navbar .logo{
-   position: absolute; 
+.header .navbar .logo {
+   position: absolute;
    left: 50%;
-   transform: translateX(-50%); /*junto com o left, centraliza a logo exatamente no meio*/
+   transform: translateX(-50%);
+   /*junto com o left, centraliza a logo exatamente no meio*/
    list-style: none;
-   
+
 }
 
-.navbar a{
+.navbar a {
    display: inline-block;
    text-decoration: none;
-   font-weight: 500;
+   font-weight: 600;
    letter-spacing: 1px;
    color: #b38148;
    font-size: medium;
@@ -65,12 +67,12 @@ body{ /*Isso tira as bordinhas brancas do site*/
    transition: 0.2s;
 }
 
-.navbar a:hover{
+.navbar a:hover {
    transform: scale(1.05);
    color: #a7937d;
 }
 
-.footer{
+.footer {
    padding: 15px;
    background-color: #0B0806;
    display: flex;
@@ -82,11 +84,11 @@ body{ /*Isso tira as bordinhas brancas do site*/
 
 
 
-
 /*Banner*/
 .banner img{
    width: 100%;
-   margin-bottom: -4px;
+   margin-bottom: -1vh;
+
 }
 
 .banner {
@@ -129,6 +131,7 @@ button{
    font-weight: 500;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    transition: 0.3s;
+   cursor: pointer;
 }
 
 .divSlogan .button:hover{
@@ -142,7 +145,7 @@ button{
 /*Sessão 1*/
 
 .sessao1{
-   margin: 0;
+   margin-top: 0;
    background: linear-gradient(0deg, rgb(17, 14, 12) 5%, rgba(11, 8, 6, 1) 65%);
 }
 
@@ -174,16 +177,16 @@ button{
 
 
 .cards{
-   margin-top: 80px;
+   margin-top: 10vh;
    display: flex;
    justify-content: space-around;
 }
 
 .card{
-   width: 450px;
-   height: 250px;
-   margin-bottom: 50px;
-   padding: 30px;
+   width: 30vw;
+   height: 35vh;
+   margin-bottom: 10vh;
+   padding: 1.5vw;
    background-color: #0b0806;
    border: solid 1px #b38148;
    transition: 0.5s;
@@ -193,7 +196,7 @@ button{
 .card h1{
    color: #b38148;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   font-size: 35px;
+   font-size: 5vh;
    transition: 0.3s;
 }
 

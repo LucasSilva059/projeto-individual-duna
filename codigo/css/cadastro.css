@@ -1,4 +1,4 @@
-html,body {
+body {
    /*Isso tira as bordinhas brancas do site*/
    margin: 0;
    padding: 0;
@@ -11,17 +11,10 @@ html,body {
    box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-
 /* HEADER */
 .header {
    background-color: #0b0806;
-   padding: 4vh 1vw;
+   padding: 35px 20px;
    border-bottom: solid 1px #b38148;
    position: relative;
 }
@@ -32,14 +25,12 @@ body {
    align-items: center;
    justify-content: space-between;
    position: relative;
-   margin-top: 1vh;
+   margin-top: 5px;
 }
 
-.itensEsquerda,
-.itensDireita {
+.itensEsquerda, .itensDireita{
    display: flex;
-   list-style: none;
-   /*serve para tirar a bolinha do style*/
+   list-style: none; /*serve para tirar a bolinha do style*/
    gap: 4vw;
 }
 
@@ -53,7 +44,7 @@ body {
 
 .itensEsquerda {
    position: absolute;
-   right: 68%;
+   right: 64%;
 }
 
 .header .navbar .logo {
@@ -68,10 +59,10 @@ body {
 .navbar a {
    display: inline-block;
    text-decoration: none;
-   font-weight: 500;
+   font-weight: 600;
    letter-spacing: 1px;
    color: #b38148;
-   font-size: 1vw;
+   font-size: medium;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    transition: 0.2s;
 }
@@ -80,6 +71,7 @@ body {
    transform: scale(1.05);
    color: #a7937d;
 }
+
 
 .footer {
    padding: 2vh;

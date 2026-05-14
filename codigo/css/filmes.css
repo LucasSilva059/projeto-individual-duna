@@ -108,7 +108,7 @@ body {
 .card{
    display: flex;
    flex-direction: column;
-   width: 60vw;
+   width: 80vw;
    height: 70vh;
    margin-bottom: 10vh;
    padding: 3vw;
@@ -123,8 +123,10 @@ body {
    justify-content: space-between;
 }
 
-.conteudoCard img{
+.conteudoCard iframe{
    display: flex;
+   width: 35vw;
+   height: 45vh;
 }
 
 .card h1{
@@ -139,7 +141,7 @@ body {
    color: #a7937d;
    font-size: 25px;
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   max-width: 36vw;
+   max-width: 37vw;
    text-align: justify;
 }
 

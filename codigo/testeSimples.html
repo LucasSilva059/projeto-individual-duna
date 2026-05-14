@@ -322,7 +322,7 @@
 
    /*Essa parte do código pega o valor que foi enviado para a função e troca ele pelo contrário. Se receber true, transforma em false. Se receber false, transforma em true. Depois, esse novo valor é usado no .disabled dos botões. Como .disabled = true desativa um botão e .disabled = false ativa, a função serve basicamente para ligar ou desligar as alternativas da pergunta.*/
    function habilitarAlternativas(trueOrFalse) {
-      let opcaoEscolhida = trueOrFalse ? false : true
+      let opcaoEscolhida = trueOrFalse ? false : true;
 
       primeiraOpcao.disabled = opcaoEscolhida
       segundaOpcao.disabled = opcaoEscolhida

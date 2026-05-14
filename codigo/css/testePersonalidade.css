@@ -161,8 +161,10 @@ body {
    justify-content: center;
 
    padding: 1%;
-   height: 80vh;
+   height: 90%;
    width: 60vw;
+
+   margin: 4vh;
 
    background-color: #0b0806;
    border: solid 2px #b38148;
@@ -241,7 +243,7 @@ body {
    color: #b38148;
    border: solid 1px #b38148;
    font-size: 1.1vw;
-   font-weight: 500;
+   font-weight: 600;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    transition: 0.3s;
    cursor: pointer;
@@ -268,7 +270,7 @@ body {
 /*============================== RESULTADO =============================*/
 
 #resultado {
-   padding: 5%;
+   padding: 1vw;
 
    width: 60vw;
    height: 72vh;
@@ -318,5 +320,6 @@ body {
 #resultado button {
    display: block;
    margin: 0 auto;
-   margin-top: 5vh;
+   margin-top: 3vh;
+   font-weight: 600;
 }

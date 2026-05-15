@@ -1,0 +1,10 @@
+CREATE DATABASE trialsOfDune;
+
+USE trialsOfDune;
+
+CREATE TABLE usuario(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(45),
+email VARCHAR(45),
+senha VARCHAR(20)
+);

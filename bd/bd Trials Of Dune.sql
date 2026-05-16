@@ -12,6 +12,7 @@ senha VARCHAR(20)
 CREATE TABLE respostas(
 id INT AUTO_INCREMENT PRIMARY KEY,
 resposta1 CHAR(1),
+resposta2 CHAR(1),
 resposta3 CHAR(1),
 resposta4 CHAR(1),
 resposta5 CHAR(1),
@@ -31,3 +32,7 @@ fkUsuario INT,
     FOREIGN KEY (fkUsuario)
     REFERENCES usuario(id)
 );
+
+
+SELECT * FROM usuario;
+desc usuario;

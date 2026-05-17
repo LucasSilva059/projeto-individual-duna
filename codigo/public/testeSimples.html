@@ -195,6 +195,9 @@
       }
    ]
 
+  
+   let respostasUsuario = [];
+
    let pontuacoes = {
       atreides: 0,
       harkonnen: 0,
@@ -324,7 +327,7 @@
 
    /*Essa parte do código pega o valor que foi enviado para a função e troca ele pelo contrário. Se receber true, transforma em false. Se receber false, transforma em true. Depois, esse novo valor é usado no .disabled dos botões. Como .disabled = true desativa um botão e .disabled = false ativa, a função serve basicamente para ligar ou desligar as alternativas da pergunta.*/
    function habilitarAlternativas(trueOrFalse) {
-      let opcaoEscolhida = trueOrFalse ? false : true;
+      let opcaoEscolhida = trueOrFalse ? false : true
 
       primeiraOpcao.disabled = opcaoEscolhida
       segundaOpcao.disabled = opcaoEscolhida
@@ -357,28 +360,33 @@
             respostaEscolhida = true
 
             // ALTERNATIVA A
-            if (option.value == "alternativaA") {// 
-               pontuacoes[questaoAtual.resultadoA] += questaoAtual.peso
+            if (option.value == "alternativaA") { //ele pega a pontuação da casa especifica da constante 'questao atual' olhando o 'resultadoA' e soma a quantidade de pontos que é o peso da questao atual
+               pontuacoes[questaoAtual.resultadoA] += questaoAtual.peso;
+               respostasUsuario.push('A');
             }
 
             // ALTERNATIVA B
             else if (option.value == "alternativaB") {
-               pontuacoes[questaoAtual.resultadoB] += questaoAtual.peso
+               pontuacoes[questaoAtual.resultadoB] += questaoAtual.peso;
+               respostasUsuario.push('B');
             }
 
             // ALTERNATIVA C
             else if (option.value == "alternativaC") {
-               pontuacoes[questaoAtual.resultadoC] += questaoAtual.peso
+               pontuacoes[questaoAtual.resultadoC] += questaoAtual.peso;
+               respostasUsuario.push('C');
             }
 
             // ALTERNATIVA D
             else if (option.value == "alternativaD") {
-               pontuacoes[questaoAtual.resultadoD] += questaoAtual.peso
+               pontuacoes[questaoAtual.resultadoD] += questaoAtual.peso;
+               respostasUsuario.push('D');
             }
 
             // ALTERNATIVA E
             else if (option.value == "alternativaE") {
-               pontuacoes[questaoAtual.resultadoE] += questaoAtual.peso
+               pontuacoes[questaoAtual.resultadoE] += questaoAtual.peso;
+               respostasUsuario.push('E');
             }
          }
       })
@@ -504,6 +512,37 @@
       //personagem1.innerHTML = fotoP1
       //personagem2.innerHTML = fotoP2
 
+      guardarRepostasUsuario()
    }
 
+
+   function guardarRepostasUsuario() {
+
+      console.log(respostasUsuario);
+      console.log(resultadoFinal);
+      console.log(sessionStorage.ID_USUARIO);
+
+      fetch("/respostas/cadastrar", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({
+            respostasServer: respostasUsuario,
+            resultadoServer: resultadoFinal,
+            fkUsuarioServer: sessionStorage.ID_USUARIO
+         })
+      }).then(function (resposta) {
+         console.log("resposta:", resposta);
+
+         if (resposta.ok) {
+            console.log('Respostas foram salvas');
+
+         } else {
+            console.log('Respostas não foram salvas');
+
+         }
+      });
+
+   }
 </script>

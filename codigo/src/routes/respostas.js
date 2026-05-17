@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
-app.use("/respostas", respostasRouter);
+var respostaController = require("../controllers/respostaController");
 
 router.post("/cadastrar", function (req, res) {
-    respostasRouter.cadastrar(req, res);
+    respostaController.cadastrar(req, res);
 })
 
 router.get("/listar", function (req, res) {
-    respostasRouter.listar(req, res);
+    respostaController.listar(req, res);
 });
 
 module.exports = router;

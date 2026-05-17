@@ -209,6 +209,11 @@
       let senhaVar = inp_senha.value;
       let emailVar = inp_email.value;
 
+      console.log(nomeCorreto);
+      console.log(emailCorreto);
+      console.log(senhaCorreta);
+      console.log(confSenhaCorreta);
+      
       if (
          nomeCorreto &&
          emailCorreto &&
@@ -216,10 +221,14 @@
          confSenhaCorreta
       ) {
 
-         fetch("http://localhost:5500/usuarios/cadastrar", {
+         fetch("http://localhost:8080/usuarios/cadastrar", {
             method: "POST",
             headers: {
                "Content-Type": "application/json",
+               //fetch("http://localhost:5500/usuarios/cadastrar", {
+               //method: "POST",
+               //headers: {
+               // "Content-Type": "application/json",
             },
             body: JSON.stringify({
                nomeServer: nomeVar,

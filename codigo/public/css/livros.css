@@ -134,7 +134,7 @@ body {
    display: flex;
    flex-direction: column;
    width: 40vw;
-   height: 60vh;
+   height: 55vh;
    margin-bottom: 3vh;
    padding: 2vw;
    background-color: #0b0806;
@@ -142,6 +142,7 @@ body {
    transition: 0.5s;
    color: #a7937d;
    justify-content: space-between;
+   padding-bottom: 3vh;
 }
 
 .card h1{
@@ -149,18 +150,19 @@ body {
 }
 
 .card p{
-   max-width: 300px;
+   max-width: 350px;
    font-size: 1.3vw;
 }
 
 .card img {
-   width: 30vw;
+   width: 14vw;
    height: 20vw;
 }
 
 .conteudoCard{
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 }
 
 

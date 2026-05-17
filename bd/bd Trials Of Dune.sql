@@ -26,13 +26,15 @@ resposta12 CHAR(1),
 resposta13 CHAR(1),
 resposta14 CHAR(1),
 resposta15 CHAR(1),
-resultado VARCHAR(12),
+resultado VARCHAR(20),
 fkUsuario INT,
 	CONSTRAINT chFkUsuario
     FOREIGN KEY (fkUsuario)
     REFERENCES usuario(id)
 );
 
+alter table respostas modify column resultado varchar(25);
 
 SELECT * FROM usuario;
+select * from respostas;
 desc usuario;

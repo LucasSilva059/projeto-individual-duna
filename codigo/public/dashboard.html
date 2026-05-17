@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Trials of Dune</title>
+   <link rel="stylesheet" href="css/filmes.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+   <header class="header"><!-- header -->
+
+      <nav class="navbar"><!-- navbar -->
+
+         <ul class="itensEsquerda">
+            <li>
+               <a href="filmes.html">FILMES</a>
+            </li>
+            <li>
+               <a href="livros.html">LIVROS</a>
+            </li>
+            <li>
+               <a href="testePersonalidade.html">TESTE DE PERSONALIDADE</a>
+            </li>
+         </ul>
+
+         <li class="logo">
+            <a href="index.html">
+               <img style="width: 95px;" src="assets/imgs/logo 2.png" alt="Logo TOD">
+            </a>
+         </li>
+
+         <ul class="itensDireita">
+            <li>
+               <a href="index.html">HOME</a>
+            </li>
+            <li>
+               <a href="login.html">LOGIN</a>
+            </li>
+         </ul>
+
+      </nav>
+   </header>
+
+   <!-- Puxar dados do banco -->
+   <div id="perfil">
+      <h1>Perfil</h1>
+
+      <h3>Nome</h3>
+      <p id="p_nome"></p>
+
+      <h3>Email</h3>
+      <p id="p_email"></p>
+
+      <h4>Casa</h4>
+      <p id="p_casa"></p>
+   </div>
+
+
+   <div>
+      <canvas id="graficoPizza"></canvas>
+   </div>
+
+
+
+   <script>
+      const ctx = document.getElementById('graficoPizza');
+
+      let labelsX = ['harkonnen', 'Atreides'];
+      let valores = [50,10];
+
+      new Chart(ctx, {
+         type: 'pie',
+         valores: {
+            labels: labelsX,
+            datasets: [{
+               label: '# of Votes',
+               data: valores,
+               borderWidth: 5
+            }]
+         },
+         options: {
+            scales: {
+               y: {
+                  beginAtZero: true
+               }
+            }
+         }
+      });
+   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <footer class="footer">
+      <p>© 2026 TrialsOfDune.</p>
+   </footer>

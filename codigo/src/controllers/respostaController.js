@@ -10,28 +10,30 @@ function listar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var resposta1 = req.body.resposta1Server;
-    var resposta2 = req.body.resposta2Server;
-    var resposta3 = req.body.resposta3Server;
-    var resposta4 = req.body.resposta4Server;
-    var resposta5 = req.body.resposta5Server;
-    var resposta6 = req.body.resposta6Server;
-    var resposta7 = req.body.resposta7Server;
-    var resposta8 = req.body.resposta8Server;
-    var resposta9 = req.body.resposta9Server;
-    var resposta10 = req.body.resposta10Server;
-    var resposta11 = req.body.resposta11Server;
-    var resposta12 = req.body.resposta12Server;
-    var resposta13 = req.body.resposta13Server;
-    var resposta14 = req.body.resposta14Server;
-    var resposta15 = req.body.resposta15Server;
+    var resposta1 = req.body.respostasServer[0];
+    var resposta2 = req.body.respostasServer[1];
+    var resposta3 = req.body.respostasServer[2];
+    var resposta4 = req.body.respostasServer[3];
+    var resposta5 = req.body.respostasServer[4];
+    var resposta6 = req.body.respostasServer[5];
+    var resposta7 = req.body.respostasServer[6];
+    var resposta8 = req.body.respostasServer[7];
+    var resposta9 = req.body.respostasServer[8];
+    var resposta10 = req.body.respostasServer[9];
+    var resposta11 = req.body.respostasServer[10];
+    var resposta12 = req.body.respostasServer[11];
+    var resposta13 = req.body.respostasServer[12];
+    var resposta14 = req.body.respostasServer[13];
+    var resposta15 = req.body.respostasServer[14];
     var resultado = req.body.resultadoServer;
+    var fkUsuario = req.body.fkUsuarioServer;
 
-    respostaModel.cadastrar(nome).then(function(resposta){
+    respostaModel.cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, resposta6, resposta7, resposta8, resposta9, resposta10, resposta11, resposta12, resposta13, resposta14, resposta15, resultado, fkUsuario).then(function(resposta){
         res.status(200).send("Respostas criado com sucesso");
     }).catch(function(erro){
-        res.status(500).json(erro.sqlMessage);
-    })
+    console.log(erro);
+    res.status(500).json(erro);
+})
 }
 
 module.exports = {

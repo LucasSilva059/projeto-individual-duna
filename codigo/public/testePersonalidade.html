@@ -725,6 +725,8 @@
       console.log(respostasUsuario);
       console.log(resultadoFinal);
 
+      let fkUsuario = sessionStorage.ID_USUARIO;
+
       fetch("/respostas/cadastrar", {
          method: "POST",
          headers: {
@@ -732,19 +734,22 @@
          },
          body: JSON.stringify({
             respostasServer: respostasUsuario,
-            resultadoServer: resultadoFinal
+            resultadoServer: resultadoFinal,
+            fkUsuarioServer: fkUsuario
          })
-      }).then(function (resposta) {
-         console.log("resposta:", resposta);
+      })
+      
+      // .then(function (resposta) {
+      //    console.log("resposta:", resposta);
 
-         if (resposta.ok) {
-            console.log('Respostas foram salvas');
+      //    if (resposta.ok) {
+      //       console.log('Respostas foram salvas');
 
-         } else {
-            console.log('Respostas não foram salvas');
+      //    } else {
+      //       console.log('Respostas não foram salvas');
 
-         }
-      });
+      //    }
+      // });
 
    }
 </script>

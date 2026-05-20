@@ -94,38 +94,39 @@
             emailServer: email,
             senhaServer: senha
          })
-      }).then(function (resposta) {
-         console.log("Estou no THEN do entrar()!")
-
-         if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-               console.log(json);
-               console.log(JSON.stringify(json));
-               sessionStorage.EMAIL_USUARIO = json.email;
-               sessionStorage.NOME_USUARIO = json.nome;
-               sessionStorage.ID_USUARIO = json.id;
-
-               console.log("login efetuado com sucesso!")
-               setTimeout(function () {
-                  window.location.href = "dashboard.html";
-               }, 1000);
-
-            });
-
-         } else {
-
-            console.log("Houve um erro ao tentar realizar o login!");
-         }
-
       })
-         .catch(function (erro) {
+      // .then(function (resposta) {
+      //    console.log("Estou no THEN do entrar()!")
 
-            console.log("ERRO:");
-            console.log(erro);
+      //    if (resposta.ok) {
+      //       console.log(resposta);
 
-         })
+      //       resposta.json().then(json => {
+      //          console.log(json);
+      //          console.log(JSON.stringify(json));
+      //          sessionStorage.EMAIL_USUARIO = json.email;
+      //          sessionStorage.NOME_USUARIO = json.nome;
+      //          sessionStorage.ID_USUARIO = json.id;
+
+      //          console.log("login efetuado com sucesso!")
+      //          setTimeout(function () {
+      //             window.location.href = "dashboard.html";
+      //          }, 1000);
+
+      //       });
+
+      //    } else {
+
+      //       console.log("Houve um erro ao tentar realizar o login!");
+      //    }
+
+      // })
+      //    .catch(function (erro) {
+
+      //       console.log("ERRO:");
+      //       console.log(erro);
+
+      //    })
    }
 
 

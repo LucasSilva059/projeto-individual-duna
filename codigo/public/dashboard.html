@@ -216,6 +216,44 @@
 
    new Chart(document.getElementById('pizzaGeral'), {
       type: 'pie',
+      data: dataPizza
+   });
+</script>
+
+
+<div style="width: 700px;">
+   <canvas id="graficoBarras"></canvas>
+</div>
+
+<script>
+   const ctxBarras = document.getElementById('graficoBarras');
+
+   let labels = ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'];
+
+   const dataBarras = {
+      labels: labels,
+      datasets: [{
+         label: 'Usuários por Casa',
+         data: [25, 18, 12, 30, 50],
+         backgroundColor: [
+            '#1e3a8a',
+            '#7f1d1d',
+            '#d4af37',
+            '#c2b280',
+            '#483D8B'
+         ],
+         borderColor: [
+            '#3b82f6',
+            '#dc2626',
+            '#facc15',
+            '#e5d3a1'
+         ],
+         borderWidth: 1,
+         borderRadius: 8
+      }]
+   };
+
+   new Chart(ctxBarras, {
       data: {
          labels: ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'],
          datasets: [{

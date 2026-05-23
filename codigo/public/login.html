@@ -44,7 +44,6 @@
       </nav>
    </header>
 
-
    <section id="sessao1">
       <div class="cabecalho" id="cabecalho">
          <h1>TRIALS OF DUNE</h1>
@@ -66,7 +65,6 @@
          <button onclick="entrar()">Entrar</button>
 
          <p id="aindaNaoTemConta">Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-
 
       </div>
    </section>
@@ -95,39 +93,49 @@
             senhaServer: senha
          })
       })
-      // .then(function (resposta) {
-      //    console.log("Estou no THEN do entrar()!")
 
-      //    if (resposta.ok) {
-      //       console.log(resposta);
+         .then(function (resposta) {
+         console.log("Estou no THEN do entrar()!")
 
-      //       resposta.json().then(json => {
-      //          console.log(json);
-      //          console.log(JSON.stringify(json));
-      //          sessionStorage.EMAIL_USUARIO = json.email;
-      //          sessionStorage.NOME_USUARIO = json.nome;
-      //          sessionStorage.ID_USUARIO = json.id;
+         if (resposta.ok) {
+            console.log(resposta);
+            
+            resposta.json().then(json => {
+               console.log(json);
+               console.log(JSON.stringify(json));
+               sessionStorage.EMAIL_USUARIO = json.email;
+               sessionStorage.NOME_USUARIO = json.nome;
+               sessionStorage.ID_USUARIO = json.id;
+               localStorage.setItem("logado", "true");
+               
+               console.log("login efetuado com sucesso!")
+               setTimeout(function () {
+                  window.location.href = "dashboard.html";
+               }, 1000);
 
-      //          console.log("login efetuado com sucesso!")
-      //          setTimeout(function () {
-      //             window.location.href = "dashboard.html";
-      //          }, 1000);
+            });
 
-      //       });
+         } else {
 
-      //    } else {
+            console.log("Houve um erro ao tentar realizar o login!");
+         }
 
-      //       console.log("Houve um erro ao tentar realizar o login!");
-      //    }
+      })
+         .catch(function (erro) {
 
-      // })
-      //    .catch(function (erro) {
+            console.log("ERRO:");
+            console.log(erro);
 
-      //       console.log("ERRO:");
-      //       console.log(erro);
+         })
 
-      //    })
+
    }
+
+
+   // localStorage.setItem("logado", "true");
+
+   // localStorage.removeItem("logado");
+
 
 
 </script>

@@ -33,10 +33,16 @@
 
          <ul class="itensDireita">
             <li>
-               <a href="index.html">HOME</a>
+               <a id="a_index" href="index.html">HOME</a>
             </li>
             <li>
-               <a href="login.html">LOGIN</a>
+               <a id="a_login" href="login.html">LOGIN</a>
+            </li>
+            <li>
+               <a id="a_dashboard" href="dashboard.html">DASHBOARD</a>
+            </li>
+            <li>
+               <a id="a_sair" onclick="sair()">SAIR</a>
             </li>
          </ul>
 
@@ -44,6 +50,17 @@
    </header>
 
    <main>
+
+      <script>
+         if(localStorage.getItem("logado")){
+            // desabilitar boatãos especificos
+            document.getElementById
+         }
+
+         function sair(){
+            // habilitar os q tinham sido desabilitados
+         }
+      </script>
 
       <section>
          <div class="banner">

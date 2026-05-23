@@ -35,7 +35,6 @@
             <li>
                <a id="a_index" href="index.html">HOME</a>
             </li>
-<<<<<<< HEAD
             <li>
                <a id="a_login" href="login.html">LOGIN</a>
             </li>
@@ -44,24 +43,14 @@
             </li>
             <li>
                <a id="a_sair" onclick="sair()">SAIR</a>
-=======
-            <li id="a_login">
-               <a  href="login.html">LOGIN</a>
-            </li>
-            <li id="a_dashboard">
-               <a  style="display: none;" href="dashboard.html">DASHBOARD</a>
-            </li>
-            <li id="a_sair">
-               <a  style="display: none;" onclick="sair()">SAIR</a>
->>>>>>> 2990db3d26b9ed8a4ed674cf04b03a31aa2557ce
             </li>
          </ul>
 
          <script>
-            if(sessionStorage.getItem("login")){
-               document.getElementById("a_dashboard").style.display = "block";
-               document.getElementById("a_sair").style.display = "block";
-               document.getElementById("a_login").style.display = "none";
+            if(sessionStorage.getItem("login") == false){
+               document.getElementById("a_dashboard").style.display = "none";
+               document.getElementById("a_sair").style.display = "none";
+               document.getElementById("a_login").style.display = "block";
             }
 
             function sair(){

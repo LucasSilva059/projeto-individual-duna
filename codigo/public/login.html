@@ -54,6 +54,8 @@
             }
 
             function sair(){
+               sessionStorage.removeItem("login");
+
                document.getElementById("a_dashboard").style.display = "none";
                document.getElementById("a_sair").style.display = "none";
                document.getElementById("a_login").style.display = "block";
@@ -112,53 +114,18 @@
             senhaServer: senha
          })
       })
-<<<<<<< HEAD
-
-         .then(function (resposta) {
-         console.log("Estou no THEN do entrar()!")
-
-         if (resposta.ok) {
-            console.log(resposta);
-            
-=======
       .then(function (resposta) {
          console.log("Estou no THEN do entrar()!")
 
          if (resposta.ok) {
             console.log(resposta);
 
->>>>>>> 2990db3d26b9ed8a4ed674cf04b03a31aa2557ce
             resposta.json().then(json => {
                console.log(json);
                console.log(JSON.stringify(json));
                sessionStorage.EMAIL_USUARIO = json.email;
                sessionStorage.NOME_USUARIO = json.nome;
                sessionStorage.ID_USUARIO = json.id;
-<<<<<<< HEAD
-               localStorage.setItem("logado", "true");
-               
-               console.log("login efetuado com sucesso!")
-               setTimeout(function () {
-                  window.location.href = "dashboard.html";
-               }, 1000);
-
-            });
-
-         } else {
-
-            console.log("Houve um erro ao tentar realizar o login!");
-         }
-
-      })
-         .catch(function (erro) {
-
-            console.log("ERRO:");
-            console.log(erro);
-
-         })
-
-
-=======
                sessionStorage.setItem("login","true")
 
                console.log("login efetuado com sucesso!")
@@ -180,7 +147,6 @@
             console.log(erro);
 
          })
->>>>>>> 2990db3d26b9ed8a4ed674cf04b03a31aa2557ce
    }
 
 

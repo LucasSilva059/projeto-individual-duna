@@ -9,7 +9,6 @@
 </head>
 
 <body>
-   <div class="fundoHeader"></div>
    <header class="header"><!-- header -->
 
       <nav class="navbar"><!-- navbar -->
@@ -37,9 +36,29 @@
                <a href="index.html">HOME</a>
             </li>
             <li>
-               <a href="login.html">LOGIN</a>
+               <a id="a_login" href="login.html">LOGIN</a>
+            </li>
+            <li>
+               <a id="a_dashboard" href="dashboard.html">DASHBOARD</a>
+            </li>
+            <li>
+               <a id="a_sair" onclick="sair()">SAIR</a>
             </li>
          </ul>
+
+         <script>
+            if(sessionStorage.getItem("login")){
+               document.getElementById("a_dashboard").style.display = "block";
+               document.getElementById("a_sair").style.display = "block";
+               document.getElementById("a_login").style.display = "none";
+            }
+
+            function sair(){
+               document.getElementById("a_dashboard").style.display = "none";
+               document.getElementById("a_sair").style.display = "none";
+               document.getElementById("a_login").style.display = "block";
+            }  
+         </script>
 
       </nav>
    </header>
@@ -93,6 +112,7 @@
             senhaServer: senha
          })
       })
+<<<<<<< HEAD
 
          .then(function (resposta) {
          console.log("Estou no THEN do entrar()!")
@@ -100,12 +120,21 @@
          if (resposta.ok) {
             console.log(resposta);
             
+=======
+      .then(function (resposta) {
+         console.log("Estou no THEN do entrar()!")
+
+         if (resposta.ok) {
+            console.log(resposta);
+
+>>>>>>> 2990db3d26b9ed8a4ed674cf04b03a31aa2557ce
             resposta.json().then(json => {
                console.log(json);
                console.log(JSON.stringify(json));
                sessionStorage.EMAIL_USUARIO = json.email;
                sessionStorage.NOME_USUARIO = json.nome;
                sessionStorage.ID_USUARIO = json.id;
+<<<<<<< HEAD
                localStorage.setItem("logado", "true");
                
                console.log("login efetuado com sucesso!")
@@ -129,6 +158,29 @@
          })
 
 
+=======
+               sessionStorage.setItem("login","true")
+
+               console.log("login efetuado com sucesso!")
+               setTimeout(function () {
+                  window.location.href = "dashboard.html";
+               }, 1000);
+
+            });
+
+         } else {
+
+            console.log("Houve um erro ao tentar realizar o login!");
+         }
+
+      })
+         .catch(function (erro) {
+
+            console.log("ERRO:");
+            console.log(erro);
+
+         })
+>>>>>>> 2990db3d26b9ed8a4ed674cf04b03a31aa2557ce
    }
 
 

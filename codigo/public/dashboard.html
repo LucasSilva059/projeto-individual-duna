@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Trials of Dune</title>
-   <link rel="stylesheet" href="css/filmes.css">
+   <link rel="stylesheet" href="css/dashboard.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -45,46 +45,176 @@
    </header>
 
    <!-- Puxar dados do banco -->
-   <div id="perfil">
-      <h1>Perfil</h1>
+   <section id="sessaoDash" class="sessao">
 
-      <h3>Nome</h3>
-      <p id="p_nome"></p>
+      <div class="dashboard">
 
-      <h3>Email</h3>
-      <p id="p_email"></p>
+         <h1 class="titulo">Dashboard do Usuário</h1>
+         <p class="subtitulo">
+            Explore insights profundos sobre suas escolhas no teste de personalidade
+         </p>
 
-      <h4>Casa</h4>
-      <p id="p_casa"></p>
-   </div>
+         <!-- RESULTADO + PERFIL -->
 
 
-   <div style="width: 500px; height: 500px;" >
-      <canvas id="graficoPizza"></canvas>
-   </div>
-   <script>
-   const ctxPizza = document.getElementById('graficoPizza');
 
-   let labelsX = ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'];
-   let valores = [50, 100, 70, 40, 20];
+         <div class="card resultadoUsuario">
 
-   const dataPizza = {
-      labels: labelsX,
-      datasets: [{
-         label: 'Usuários',
-         data: valores,
-         backgroundColor: [
-            '#29572b',
-            '#471414',
-            '#b66522',
-            '#a5915d',
-            '#483D8B'
-         ],
-         hoverOffset: 4
-      }]
-   };
+            <h1 class="nomeCasa">Casa Harkonnen</h1>
 
-   new Chart(ctxPizza, {
+            <p class="fraseCasa">
+               "O poder não conhece limites"
+            </p><!-- puxar resultado e ver qual é a frase -->
+
+            <h2>Características da Casa</h2>
+
+            <div class="grafico">
+               <canvas id="radarCasa"></canvas>
+            </div>
+
+         </div>
+
+         <div class="card perfil">
+
+            <h2>Perfil</h2>
+
+            <div class="infoPerfil">
+               <h4>Nome</h4>
+               <p>Lucas Espindola</p>
+            </div>
+
+            <div class="infoPerfil">
+               <h4>Email</h4>
+               <p>lucas@gmail.com</p>
+            </div>
+
+            <div class="infoPerfil">
+               <h4>Casa</h4>
+               <p>Casa Harkonnen</p>
+            </div>
+
+         </div>
+
+
+
+         <!-- KPIS -->
+
+         <div id="dadosGerais">
+            <h1 class="titulo">dados gerais</h1>
+            <div class="kpis">
+               <div class="card">
+                  <h3>Total de Resultados</h3>
+                  <p>4.291</p>
+               </div>
+
+               <div class="card">
+                  <h3>Casa Mais Popular</h3>
+                  <p>Fremen</p>
+               </div>
+
+               <div class="card">
+                  <h3>Casa Menos Popular</h3>
+                  <p>Bene Gesserit</p>
+               </div>
+            </div>
+         </div>
+
+
+         <!-- GRAFICOS GERAIS -->
+
+
+
+         <div class="grafico card">
+            <h2>Distribuição por Casa</h2>
+            <p>
+               Quantidade total de usuários em cada Casa
+            </p>
+            <canvas id="pizzaGeral"></canvas>
+         </div>
+
+         <div class="grafico card">
+            <h2>Usuários por Casa</h2>
+            <p>
+               Comparativo entre todas as Casas
+            </p>
+            <canvas id="barraGeral"></canvas>
+         </div>
+
+         <!-- GRAFICOS USUARIO -->
+         <h1 class="titulo">Dados do usuário</h1>
+         <div id="dadosUsuario">
+
+            <div class="grafico card">
+               <h2>Suas Escolhas por Casa</h2>
+               <p>
+                  Veja quantas vezes você se alinhou com cada Casa
+               </p>
+               <canvas id="barraUsuario"></canvas>
+            </div>
+
+            <div class="grafico card">
+               <h2>Proporção das Suas Escolhas</h2>
+               <p>
+                  Equilíbrio entre suas respostas
+               </p>
+               <canvas id="pizzaUsuario"></canvas>
+            </div>
+         </div>
+
+      </div>
+
+      <footer class="footer">
+         <p>© 2026 TrialsOfDune.</p>
+      </footer>
+
+   </section>
+
+</body>
+
+<script>
+   new Chart(document.getElementById('radarCasa'), {
+      type: 'radar',
+      data: {
+         labels: ['Honra', 'Poder', 'Adaptação', 'Sabedoria', 'Estratégia'],
+         datasets: [{
+            label: 'Casa Harkonnen',
+            data: [20, 90, 40, 55, 85],
+            backgroundColor: 'rgba(180,70,70,0.4)',
+            borderColor: '#b44646',
+            pointBackgroundColor: '#b44646'
+         }]
+      },
+      options: {
+         scales: {
+            r: {
+               grid: {
+                  color: '#6d4618'
+               },
+               angleLines: {
+                  color: '#6d4618'
+               },
+               pointLabels: {
+                  color: '#f0d2a3'
+               },
+               ticks: {
+                  color: '#f0d2a3',
+                  backdropColor: 'transparent'
+               }
+            }
+         },
+         plugins: {
+            legend: {
+               labels: {
+                  color: '#b44646'
+               }
+            }
+         }
+      }
+   });
+
+   // PIZZA GERAL
+
+   new Chart(document.getElementById('pizzaGeral'), {
       type: 'pie',
       data: dataPizza
    });
@@ -124,28 +254,143 @@
    };
 
    new Chart(ctxBarras, {
-      type: 'bar',
-      data: dataBarras,
+      data: {
+         labels: ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'],
+         datasets: [{
+            data: [27, 10, 8, 33, 22],
+            backgroundColor: [
+               '#4f83aa',
+               '#943939',
+               '#d4af37',
+               '#c2b280',
+               '#483D8B'
+            ]
+         }]
+      },
       options: {
-         responsive: true,
-         scales: {
-            y: {
-               beginAtZero: true
+         plugins: {
+            legend: {
+               labels: {
+                  color: '#f0d2a3'
+               }
             }
          }
       }
    });
+
+   // BARRA GERAL
+
+   new Chart(document.getElementById('barraGeral'), {
+      type: 'bar',
+      data: {
+         labels: ['Atreides', 'Harkonnen', 'Fremen', 'Bene Gesserit'],
+         datasets: [{
+            label: 'Usuários',
+            data: [42, 28, 51, 35],
+            backgroundColor: [
+               '#4f83aa',
+               '#943939',
+               '#d1a46f',
+               '#74567f'
+            ]
+         }]
+      },
+      options: {
+         scales: {
+            x: {
+               ticks: {
+                  color: '#f0d2a3'
+               },
+               grid: {
+                  color: '#2a1a0f'
+               }
+            },
+            y: {
+               ticks: {
+                  color: '#f0d2a3'
+               },
+               grid: {
+                  color: '#2a1a0f'
+               }
+            }
+         },
+         plugins: {
+            legend: {
+               labels: {
+                  color: '#f0d2a3'
+               }
+            }
+         }
+      }
+   });
+
+   // BARRA USUARIO
+
+   new Chart(document.getElementById('barraUsuario'), {
+      type: 'bar',
+      data: {
+         labels: ['Harkonnen', 'Atreides', 'Fremen'],
+         datasets: [{
+            data: [11, 2, 2],
+            backgroundColor: [
+               '#943939',
+               '#4f83aa',
+               '#d1a46f'
+            ]
+         }]
+      },
+      options: {
+         indexAxis: 'y',
+         scales: {
+            x: {
+               ticks: {
+                  color: '#f0d2a3'
+               },
+               grid: {
+                  color: '#2a1a0f'
+               }
+            },
+            y: {
+               ticks: {
+                  color: '#f0d2a3'
+               },
+               grid: {
+                  color: '#2a1a0f'
+               }
+            }
+         },
+         plugins: {
+            legend: {
+               display: false
+            }
+         }
+      }
+   });
+
+   // PIZZA USUARIO
+
+   new Chart(document.getElementById('pizzaUsuario'), {
+      type: 'pie',
+      data: {
+         labels: ['Harkonnen', 'Atreides', 'Fremen'],
+         datasets: [{
+            data: [73, 13, 13],
+            backgroundColor: [
+               '#943939',
+               '#4f83aa',
+               '#d1a46f'
+            ]
+         }]
+      },
+      options: {
+         plugins: {
+            legend: {
+               labels: {
+                  color: '#f0d2a3'
+               }
+            }
+         }
+      }
+   });
+
 </script>
-
-
-
-
-
-
-
-
-
-
-   <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
-   </footer>

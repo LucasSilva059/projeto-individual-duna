@@ -9,7 +9,7 @@
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="buscarDados()">
    <header class="header"><!-- header -->
 
       <nav class="navbar"><!-- navbar -->
@@ -58,7 +58,8 @@
                document.getElementById("a_dashboard").style.display = "none";
                document.getElementById("a_sair").style.display = "none";
                document.getElementById("a_login").style.display = "block";
-               sessionStorage.removeItem("login")
+               sessionStorage.removeItem("login");
+               window.location.reload()
             }  
          </script>
 
@@ -69,11 +70,12 @@
    <section id="sessaoDash" class="sessao">
 
       <div class="dashboard">
-
-         <h1 class="titulo">Dashboard do Usuário</h1>
-         <p class="subtitulo">
-            Explore insights profundos sobre suas escolhas no teste de personalidade
-         </p>
+         <div id="titulo">
+            <h1 class="titulo">Dashboard do Usuário</h1>
+            <p class="subtitulo">
+               Explore insights profundos sobre suas escolhas no teste de personalidade
+            </p>
+         </div>
 
          <!-- RESULTADO + PERFIL -->
 
@@ -81,17 +83,21 @@
          <div id="perfilCasa">
 
             <div class="card resultadoUsuario">
-<!-- puxa os resultados desse usuario em um vetor e coloca tipo resultados[resultados.length - 1] -->
-               <h1 class="nomeCasa">Casa Harkonnen</h1> 
+               <!-- puxa os resultados desse usuario em um vetor e coloca tipo resultados[resultados.length - 1] -->
+               <div class="sobreACasa">
+                  <h1 class="nomeCasa">Casa Harkonnen</h1>
 
-               <p class="fraseCasa">
-                  "O poder não conhece limites"
-               </p><!-- puxar resultado e ver qual é a frase -->
+                  <p class="fraseCasa">
+                     "O poder não conhece limites"
+                  </p><!-- puxar resultado e ver qual é a frase -->
+               </div>
 
-               <h2>Características da Casa</h2>
+               <div class="caracteristicasCasa">
+                  <h2>Características da Casa</h2>
 
-               <div class="grafico">
-                  <canvas id="radarCasa"></canvas>
+                  <div class="graficoRadar">
+                     <canvas id="radarCasa"></canvas>
+                  </div>
                </div>
 
             </div>
@@ -123,13 +129,13 @@
          <!-- KPIS -->
 
          <div id="dadosGerais">
-            <h1 class="titulo">dados gerais</h1>
+            <h1 class="titulo">Dados Gerais</h1>
 
             <div id="kpis">
 
                <div class="card">
                   <h3>Total de Resultados</h3>
-                  <p>4.291</p>
+                  <p id="kpi_total"></p>
                </div>
 
                <div class="card">
@@ -150,14 +156,14 @@
 
 
          <div id="graficosGerais">
-            <div class="grafico card">
+            <div class="grafico card ">
                <h2>Distribuição por Casa</h2>
                <p>
                   Quantidade total de resultados de usuários em cada Casa
                </p>
-               <canvas id="pizzaGeral"></canvas>
+               <canvas id="pizzaGeral" class="pizza"></canvas>
             </div>
-   
+
             <div class="grafico card">
                <h2>Usuários por Casa</h2>
                <p>
@@ -184,11 +190,11 @@
                <p>
                   Equilíbrio entre suas respostas
                </p>
-               <canvas id="pizzaUsuario"></canvas>
+               <canvas class="pizza" id="pizzaUsuario"></canvas>
             </div>
          </div>
 
-      </div>   
+      </div>
    </section>
 
    <footer class="footer">
@@ -198,6 +204,38 @@
 </body>
 
 <script>
+   function buscarDados() {
+
+      buscarDadosKpiTotal()
+
+   }
+
+   function buscarDadosKpiTotal() {
+
+      fetch("/respostas/totalRespostas")
+         .then(function (resposta) {
+
+            return resposta.json();
+         })
+         .then(function (dados) {
+
+            console.log(dados);
+            let total = dados[0].totalRespostas;
+            document.getElementById("kpi_total").innerHTML = total;
+
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+
+   }
+
+
+
+
+
    // =========================
    // RADAR CASA
    // =========================
@@ -272,6 +310,7 @@
       options: {
          plugins: {
             legend: {
+               position: 'right',
                labels: {
                   color: '#f0d2a3'
                }
@@ -307,34 +346,7 @@
             borderRadius: 8
          }]
       },
-      options: {
-         scales: {
-            x: {
-               ticks: {
-                  color: '#f0d2a3'
-               },
-               grid: {
-                  color: '#2a1a0f'
-               }
-            },
-            y: {
-               beginAtZero: true,
-               ticks: {
-                  color: '#f0d2a3'
-               },
-               grid: {
-                  color: '#2a1a0f'
-               }
-            }
-         },
-         plugins: {
-            legend: {
-               labels: {
-                  color: '#f0d2a3'
-               }
-            }
-         }
-      }
+
    });
 
    // =========================
@@ -408,6 +420,7 @@
       options: {
          plugins: {
             legend: {
+               position: 'left',
                labels: {
                   color: '#f0d2a3'
                }

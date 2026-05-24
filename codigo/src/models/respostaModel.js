@@ -16,7 +16,19 @@ function cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, respos
     return database.executar(instrucao);
 }
 
+
+function totalRespostas(){
+
+    var instrucao = `
+        SELECT COUNT(id) AS totalRespostas FROM respostas;
+    `;
+
+    console.log(instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    totalRespostas
 };

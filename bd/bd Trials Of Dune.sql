@@ -49,16 +49,6 @@ SELECT resultado, COUNT(resultado) FROM respostas -- nao selecionar o COUNT no m
 	GROUP BY resultado
     ORDER BY COUNT(resultado)  DESC; 
 
-SELECT resultado,COUNT(usuario.id) FROM respostas -- Quantidade de Resultados por casa
-	JOIN usuario On usuario.id = fkUsuario
-    GROUP BY (resultado)
-    ORDER BY FIELD(resultado,
-    'Casa Atreides',
-    'Casa Harkonnen',
-    'Casa Corrino',
-    'Povo Fremen',
-    'Irmandade Bene Gesserit');
-    
 -- Quantidade de Resultados por casa em %
     SELECT resultado,
     COUNT(*) AS quantidade, -- conta todos os resultados
@@ -74,8 +64,216 @@ ORDER BY FIELD(
     'Irmandade Bene Gesserit'
 );
 
+SELECT resultado,COUNT(usuario.id) FROM respostas -- Quantidade de Resultados por casa
+	JOIN usuario On usuario.id = fkUsuario
+    GROUP BY (resultado)
+    ORDER BY FIELD(resultado,
+    'Casa Atreides',
+    'Casa Harkonnen',
+    'Casa Corrino',
+    'Povo Fremen',
+    'Irmandade Bene Gesserit');
+
+SELECT 
+
+-- TOTAL A
+(
+    SUM(CASE WHEN resposta1 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'A' THEN 1 ELSE 0 END)
+) AS totalA,
+
+-- TOTAL B
+(
+    SUM(CASE WHEN resposta1 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'B' THEN 1 ELSE 0 END)
+) AS totalB,
+
+-- TOTAL C
+(
+    SUM(CASE WHEN resposta1 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'C' THEN 1 ELSE 0 END)
+) AS totalC,
+
+-- TOTAL D
+(
+    SUM(CASE WHEN resposta1 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'D' THEN 1 ELSE 0 END)
+) AS totalD,
+
+-- TOTAL E
+(
+    SUM(CASE WHEN resposta1 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'E' THEN 1 ELSE 0 END)
+) AS totalE
+FROM respostas
+WHERE fkUsuario = 4 AND id = 7;
+
+SELECT 
+
+ROUND((
+    SUM(CASE WHEN resposta1 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'A' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'A' THEN 1 ELSE 0 END)
+)/15 * 100,2) AS "Casa Atreides",
+
+ROUND((
+    SUM(CASE WHEN resposta1 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'B' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'B' THEN 1 ELSE 0 END)
+)/15 * 100,2) AS "Casa Harkonnen",
+
+ROUND((
+    SUM(CASE WHEN resposta1 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'C' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'C' THEN 1 ELSE 0 END)
+)/15 * 100,2) AS "Casa Corrino",
+
+ROUND((
+    SUM(CASE WHEN resposta1 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'D' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'D' THEN 1 ELSE 0 END)
+)/15 * 100,2) AS "Povo Fremen",
+
+ROUND((
+    SUM(CASE WHEN resposta1 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta2 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta3 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta4 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta5 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta6 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta7 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta8 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta9 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta10 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta11 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta12 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta13 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta14 = 'E' THEN 1 ELSE 0 END) +
+    SUM(CASE WHEN resposta15 = 'E' THEN 1 ELSE 0 END)
+)/15 * 100,2) AS "Irmandade Bene Gesserit"
+
+FROM respostas
+WHERE fkUsuario = 4
+AND id = 1;
+
 -- INSERTS PARA TESTE
 INSERT INTO usuario (nome,email,senha) VALUES
+('Lucas','lucas@gmail.com','Lucas@123'),
+('Fernando','fernando@gmail.com','Fernando@123'),
+('Paul Atreides','paul@gmail.com','Paul@123'),
 ('Jessica Atreides','jessica@gmail.com','Jessica@123'),
 ('Stilgar Fremen','stilgar@gmail.com','Stilgar@123'),
 ('Irulan Corrino','irulan@gmail.com','Irulan@123');

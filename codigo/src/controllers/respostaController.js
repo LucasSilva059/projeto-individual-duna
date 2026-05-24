@@ -1,10 +1,10 @@
 var respostaModel = require("../models/respostaModel");
 
 function listar(req, res) {
-    respostaModel.listar().then(function(resultado){
+    respostaModel.listar().then(function (resultado) {
         // precisamos informar que o resultado voltará para o front-end como uma resposta em json
         res.status(200).json(resultado);
-    }).catch(function(erro){
+    }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
@@ -28,15 +28,38 @@ function cadastrar(req, res) {
     var resultado = req.body.resultadoServer;
     var fkUsuario = req.body.fkUsuarioServer;
 
-    respostaModel.cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, resposta6, resposta7, resposta8, resposta9, resposta10, resposta11, resposta12, resposta13, resposta14, resposta15, resultado, fkUsuario).then(function(resposta){
-        res.status(200).send("Respostas criado com sucesso");
-    }).catch(function(erro){
-    console.log(erro);
-    res.status(500).json(erro);
-})
+    respostaModel.cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, resposta6, resposta7, resposta8, resposta9, resposta10, resposta11, resposta12, resposta13, resposta14, resposta15, resultado, fkUsuario).then(function (resposta) {
+        res.status(200).send("Respostas registradas com sucesso");
+
+        console.log(resultado);
+
+        res.json({
+            idResposta: resultado.insertId
+        });
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro);
+    })
 }
+
+    function totalRespostas(req, res){
+
+    respostaModel.totalRespostas()
+    .then(function(resultado){
+
+        res.status(200).json(resultado);
+
+    }).catch(function(erro){
+
+        console.log(erro);
+
+        res.status(500).json(erro.sqlMessage);
+
+    })}
+
 
 module.exports = {
     listar,
-    cadastrar
+    cadastrar,
+    totalRespostas
 }

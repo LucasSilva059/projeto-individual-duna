@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Trials of Dune</title>
+   <title>Trials of Dune | Filmes</title>
    <link rel="stylesheet" href="css/filmes.css">
 </head>
 
@@ -35,10 +35,31 @@
             <li>
                <a href="index.html">HOME</a>
             </li>
-            <li>
+            <li id="a_login">
                <a href="login.html">LOGIN</a>
             </li>
+            <li id="a_dashboard" style="display: none;">
+               <a href="dashboard.html">DASHBOARD</a>
+            </li>
+            <li id="a_sair" style="display: none;">
+               <a onclick="sair()">SAIR</a>
+            </li>
          </ul>
+
+         <script>
+            if (sessionStorage.getItem("login")) {
+               document.getElementById("a_dashboard").style.display = "block";
+               document.getElementById("a_sair").style.display = "block";
+               document.getElementById("a_login").style.display = "none";
+            }
+
+            function sair() {
+               document.getElementById("a_dashboard").style.display = "none";
+               document.getElementById("a_sair").style.display = "none";
+               document.getElementById("a_login").style.display = "block";
+               sessionStorage.removeItem("login")
+            }  
+         </script>
 
       </nav>
    </header>

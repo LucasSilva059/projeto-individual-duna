@@ -14,38 +14,25 @@ body {
 /* HEADER */
 .header {
    background-color: #0b0806;
-   padding: 35px 20px;
-   border-bottom: solid 1px #b38148;
-   position: relative;
+   padding: 2vh 2vw;
+   border-bottom: solid 0.1vh #b38148;
 }
 
 /*navbar*/
-.header .navbar {
+.header .navbar{
    display: flex;
    align-items: center;
    justify-content: space-between;
-   position: relative;
-   margin-top: 5px;
+   height: 7vh;
 }
 
 .itensEsquerda, .itensDireita{
    display: flex;
    list-style: none; /*serve para tirar a bolinha do style*/
    gap: 4vw;
+   position: static;
 }
 
-.itensDireita {
-   position: absolute;
-   /*por ter colocado POSITION RELATIVE na navbar inteira, o absolute serve para deixar o item flutuando la no meio, o left define a posição dele*/
-   left: 87%;
-   /* 90% para deixa-lo com um gapzinho ali no final*/
-
-}
-
-.itensEsquerda {
-   position: absolute;
-   right: 64%;
-}
 
 .header .navbar .logo {
    position: absolute;
@@ -70,6 +57,10 @@ body {
 .navbar a:hover {
    transform: scale(1.05);
    color: #a7937d;
+}
+
+#a_dashboard{
+   cursor: pointer;
 }
 
 .footer {

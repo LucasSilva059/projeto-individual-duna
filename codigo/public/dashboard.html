@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Trials of Dune</title>
+   <title>Trials of Dune | Dashboard</title>
    <link rel="stylesheet" href="css/dashboard.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -36,10 +36,31 @@
             <li>
                <a href="index.html">HOME</a>
             </li>
-            <li>
+            <li id="a_login">
                <a href="login.html">LOGIN</a>
             </li>
+            <li id="a_dashboard" style="display: none;">
+               <a href="dashboard.html">DASHBOARD</a>
+            </li>
+            <li id="a_sair" style="display: none;">
+               <a onclick="sair()">SAIR</a>
+            </li>
          </ul>
+
+         <script>
+            if (sessionStorage.getItem("login")) {
+               document.getElementById("a_dashboard").style.display = "block";
+               document.getElementById("a_sair").style.display = "block";
+               document.getElementById("a_login").style.display = "none";
+            }
+
+            function sair() {
+               document.getElementById("a_dashboard").style.display = "none";
+               document.getElementById("a_sair").style.display = "none";
+               document.getElementById("a_login").style.display = "block";
+               sessionStorage.removeItem("login")
+            }  
+         </script>
 
       </nav>
    </header>
@@ -57,42 +78,44 @@
          <!-- RESULTADO + PERFIL -->
 
 
+         <div id="perfilCasa">
 
-         <div class="card resultadoUsuario">
+            <div class="card resultadoUsuario">
+<!-- puxa os resultados desse usuario em um vetor e coloca tipo resultados[resultados.length - 1] -->
+               <h1 class="nomeCasa">Casa Harkonnen</h1> 
 
-            <h1 class="nomeCasa">Casa Harkonnen</h1>
+               <p class="fraseCasa">
+                  "O poder não conhece limites"
+               </p><!-- puxar resultado e ver qual é a frase -->
 
-            <p class="fraseCasa">
-               "O poder não conhece limites"
-            </p><!-- puxar resultado e ver qual é a frase -->
+               <h2>Características da Casa</h2>
 
-            <h2>Características da Casa</h2>
+               <div class="grafico">
+                  <canvas id="radarCasa"></canvas>
+               </div>
 
-            <div class="grafico">
-               <canvas id="radarCasa"></canvas>
             </div>
 
-         </div>
+            <div class="card perfil">
 
-         <div class="card perfil">
+               <h2>Perfil</h2>
 
-            <h2>Perfil</h2>
+               <div class="infoPerfil">
+                  <h4>Nome</h4>
+                  <p>Lucas Espindola</p>
+               </div>
 
-            <div class="infoPerfil">
-               <h4>Nome</h4>
-               <p>Lucas Espindola</p>
+               <div class="infoPerfil">
+                  <h4>Email</h4>
+                  <p>lucas@gmail.com</p>
+               </div>
+
+               <div class="infoPerfil">
+                  <h4>Casa</h4>
+                  <p>Casa Harkonnen</p>
+               </div>
+
             </div>
-
-            <div class="infoPerfil">
-               <h4>Email</h4>
-               <p>lucas@gmail.com</p>
-            </div>
-
-            <div class="infoPerfil">
-               <h4>Casa</h4>
-               <p>Casa Harkonnen</p>
-            </div>
-
          </div>
 
 
@@ -101,7 +124,9 @@
 
          <div id="dadosGerais">
             <h1 class="titulo">dados gerais</h1>
-            <div class="kpis">
+
+            <div id="kpis">
+
                <div class="card">
                   <h3>Total de Resultados</h3>
                   <p>4.291</p>
@@ -116,6 +141,7 @@
                   <h3>Casa Menos Popular</h3>
                   <p>Bene Gesserit</p>
                </div>
+
             </div>
          </div>
 
@@ -123,27 +149,28 @@
          <!-- GRAFICOS GERAIS -->
 
 
-
-         <div class="grafico card">
-            <h2>Distribuição por Casa</h2>
-            <p>
-               Quantidade total de usuários em cada Casa
-            </p>
-            <canvas id="pizzaGeral"></canvas>
-         </div>
-
-         <div class="grafico card">
-            <h2>Usuários por Casa</h2>
-            <p>
-               Comparativo entre todas as Casas
-            </p>
-            <canvas id="barraGeral"></canvas>
+         <div id="graficosGerais">
+            <div class="grafico card">
+               <h2>Distribuição por Casa</h2>
+               <p>
+                  Quantidade total de resultados de usuários em cada Casa
+               </p>
+               <canvas id="pizzaGeral"></canvas>
+            </div>
+   
+            <div class="grafico card">
+               <h2>Usuários por Casa</h2>
+               <p>
+                  Comparativo entre todas as Casas
+               </p>
+               <canvas id="barraGeral"></canvas>
+            </div>
          </div>
 
          <!-- GRAFICOS USUARIO -->
          <h1 class="titulo">Dados do usuário</h1>
-         <div id="dadosUsuario">
 
+         <div id="graficosUsuario">
             <div class="grafico card">
                <h2>Suas Escolhas por Casa</h2>
                <p>
@@ -161,17 +188,20 @@
             </div>
          </div>
 
-      </div>
-
-      <footer class="footer">
-         <p>© 2026 TrialsOfDune.</p>
-      </footer>
-
+      </div>   
    </section>
+
+   <footer class="footer">
+      <p>© 2026 TrialsOfDune.</p>
+   </footer>
 
 </body>
 
 <script>
+   // =========================
+   // RADAR CASA
+   // =========================
+
    new Chart(document.getElementById('radarCasa'), {
       type: 'radar',
       data: {
@@ -212,61 +242,33 @@
       }
    });
 
-   // PIZZA GERAL
+   // =========================
+   // DADOS PIZZA GERAL
+   // =========================
 
-   new Chart(document.getElementById('pizzaGeral'), {
-      type: 'pie',
-      data: dataPizza
-   });
-</script>
-
-
-<div style="width: 700px;">
-   <canvas id="graficoBarras"></canvas>
-</div>
-
-<script>
-   const ctxBarras = document.getElementById('graficoBarras');
-
-   let labels = ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'];
-
-   const dataBarras = {
-      labels: labels,
+   const dataPizza = {
+      labels: [
+         'Atreides',
+         'Harkonnen',
+         'Corrino',
+         'Fremen',
+         'Bene Gesserit'
+      ],
       datasets: [{
-         label: 'Usuários por Casa',
-         data: [25, 18, 12, 30, 50],
+         data: [27, 10, 8, 33, 22],
          backgroundColor: [
-            '#1e3a8a',
-            '#7f1d1d',
+            '#4f83aa',
+            '#943939',
             '#d4af37',
             '#c2b280',
             '#483D8B'
-         ],
-         borderColor: [
-            '#3b82f6',
-            '#dc2626',
-            '#facc15',
-            '#e5d3a1'
-         ],
-         borderWidth: 1,
-         borderRadius: 8
+         ]
       }]
    };
 
-   new Chart(ctxBarras, {
-      data: {
-         labels: ['Atreides', 'Harkonnen', 'Corrino', 'Fremen', 'Bene Gesserit'],
-         datasets: [{
-            data: [27, 10, 8, 33, 22],
-            backgroundColor: [
-               '#4f83aa',
-               '#943939',
-               '#d4af37',
-               '#c2b280',
-               '#483D8B'
-            ]
-         }]
-      },
+   new Chart(document.getElementById('pizzaGeral'), {
+      type: 'pie',
+      data: dataPizza,
       options: {
          plugins: {
             legend: {
@@ -278,21 +280,31 @@
       }
    });
 
+   // =========================
    // BARRA GERAL
+   // =========================
 
    new Chart(document.getElementById('barraGeral'), {
       type: 'bar',
       data: {
-         labels: ['Atreides', 'Harkonnen', 'Fremen', 'Bene Gesserit'],
+         labels: [
+            'Atreides',
+            'Harkonnen',
+            'Corrino',
+            'Fremen',
+            'Bene Gesserit'
+         ],
          datasets: [{
             label: 'Usuários',
-            data: [42, 28, 51, 35],
+            data: [42, 28, 15, 51, 35],
             backgroundColor: [
                '#4f83aa',
                '#943939',
+               '#d4af37',
                '#d1a46f',
                '#74567f'
-            ]
+            ],
+            borderRadius: 8
          }]
       },
       options: {
@@ -306,6 +318,7 @@
                }
             },
             y: {
+               beginAtZero: true,
                ticks: {
                   color: '#f0d2a3'
                },
@@ -324,25 +337,31 @@
       }
    });
 
+   // =========================
    // BARRA USUARIO
+   // =========================
 
    new Chart(document.getElementById('barraUsuario'), {
       type: 'bar',
       data: {
          labels: ['Harkonnen', 'Atreides', 'Fremen'],
          datasets: [{
-            data: [11, 2, 2],
+            data: [11, 2, 2, 0, 0],
             backgroundColor: [
-               '#943939',
                '#4f83aa',
-               '#d1a46f'
-            ]
+               '#943939',
+               '#d4af37',
+               '#d1a46f',
+               '#74567f'
+            ],
+            borderRadius: 8
          }]
       },
       options: {
          indexAxis: 'y',
          scales: {
             x: {
+               beginAtZero: true,
                ticks: {
                   color: '#f0d2a3'
                },
@@ -367,18 +386,22 @@
       }
    });
 
+   // =========================
    // PIZZA USUARIO
+   // =========================
 
    new Chart(document.getElementById('pizzaUsuario'), {
       type: 'pie',
       data: {
-         labels: ['Harkonnen', 'Atreides', 'Fremen'],
+         labels: ['Harkonnen', 'Atreides', 'Corrino', 'Fremen', 'Bene Gesserit'],
          datasets: [{
-            data: [73, 13, 13],
+            data: [73, 13, 13, 1, 0],
             backgroundColor: [
-               '#943939',
                '#4f83aa',
-               '#d1a46f'
+               '#943939',
+               '#d4af37',
+               '#d1a46f',
+               '#74567f'
             ]
          }]
       },
@@ -392,5 +415,4 @@
          }
       }
    });
-
 </script>

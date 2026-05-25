@@ -64,7 +64,8 @@
          <button id="btn_iniciarTeste" onclick="iniciarTeste()" disabled=true>Iniciar Teste</button>
 
          <p id="textinhoNaoLogado" class="textinho">*É necessário logar em sua conta para fazer o Teste de
-            Personalidade*</p>
+            Personalidade*</p><br>
+         <a id="a_naoLogado" href="login.html">Faça Login</a>
       </div>
 
       <div id="teste">
@@ -109,7 +110,7 @@
             </span>
          </div>
 
-         <div id="botoes">
+         <div class="botoes">
             <button class="botao" id="btn_voltar" onclick="voltarPergunta()" disabled>Pergunta Anterior</button>
 
             <button class="botao" id="btn_submeter" onclick="submeterResposta()" disabled>Submeter Resposta</button>
@@ -141,18 +142,26 @@
          </div>
          -->
 
-         <button class="botao" id="tentarNovamente" onclick="tentarNovamente()">Refazer Teste</button>
+         <div id="botaos" class="botoes">
+            <button class="botao" id="tentarNovamente" onclick="tentarNovamente()">Refazer Teste</button>
+            <button class="botao" id="verDash" onclick="verDash()">Ver DashBoard</button>
+         </div>
+
       </div>
    </section>
 
    <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
+      <p>Lucas Espindola Silva © 2026 TrialsOfDune.</p>
    </footer>
 
 
 </body>
 
 <script>
+
+   function verDash() {
+      window.location.href = "dashboard.html"
+   }
 
    if (sessionStorage.getItem("login")) {
       document.getElementById("a_dashboard").style.display = "block";
@@ -162,6 +171,8 @@
       btn_iniciarTeste.disabled = false;
 
       document.getElementById("textinhoNaoLogado").style.display = "none"
+      document.getElementById("a_naoLogado").style.display = "none"
+
    }
 
    function sair() {
@@ -170,6 +181,7 @@
       document.getElementById("a_login").style.display = "block";
       sessionStorage.removeItem("login")
       window.location.reload()
+      sessionStorage.clear();
    }
 
    const listaDeQuestoes = [
@@ -191,13 +203,14 @@
          peso: 1,
       },
 
+
       {
          pergunta: "Se alguém te desrespeita, você...",
          alternativaA: "Tenta resolver de forma madura",
          alternativaB: "Responde para não sair por baixo",
          alternativaC: "Mantém postura firme",
-         alternativaD: "Espera o momento certo para agir",
-         alternativaE: "Usa inteligência para virar o jogo depois",
+         alternativaD: "Guarda esse sentimento para si o até momento certo",
+         alternativaE: "Analisa a situação antes de fazer algo",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -208,13 +221,14 @@
          peso: 2,
       },
 
+
       {
          pergunta: "Como você toma decisões importantes?",
          alternativaA: "Pelo que considera correto",
          alternativaB: "Pelo que oferece mais vantagens",
          alternativaC: "Pela lógica e estabilidade",
-         alternativaD: "Pela experiência e instinto",
-         alternativaE: "Confia mais na própria percepção",
+         alternativaD: "Por instinto",
+         alternativaE: "Observa todos os detalhes antes de decidir",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -224,14 +238,13 @@
 
          peso: 4,
       },
-
       {
          pergunta: "Você ganha muito dinheiro inesperadamente. O que faz?",
          alternativaA: "Ajuda pessoas importantes para você",
-         alternativaB: "Investe pensando em crescer mais",
+         alternativaB: "Investe pensando em conquistar mais coisas",
          alternativaC: "Planeja cuidadosamente o futuro",
-         alternativaD: "Prefere garantir segurança antes",
-         alternativaE: "Procura usar isso da forma mais inteligente possível",
+         alternativaD: "Guarda pensando em tempos difíceis",
+         alternativaE: "Busca aprender algo novo com essa oportunidade",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -241,7 +254,6 @@
 
          peso: 1,
       },
-
       {
          pergunta: "Qual tipo de líder você mais respeita?",
          alternativaA: "O que inspira confiança",
@@ -265,7 +277,7 @@
          alternativaB: "Ter influência e reconhecimento",
          alternativaC: "Construir algo duradouro",
          alternativaD: "Superar dificuldades",
-         alternativaE: "Ter domínio sobre si mesmo",
+         alternativaE: "Ter equilíbrio emocional e mental",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -279,10 +291,10 @@
       {
          pergunta: "Você descobre que um amigo mentiu para você. O que faz?",
          alternativaA: "Conversa para entender o motivo",
-         alternativaB: "Perde parte da confiança imediatamente",
-         alternativaC: "Tenta resolver racionalmente",
-         alternativaD: "Dá um tempo antes de agir",
-         alternativaE: "Tenta entender o motivo por trás da mentira",
+         alternativaB: "Corta a confiança imediatamente",
+         alternativaC: "Analisa os fatos antes de reagir",
+         alternativaD: "Se afasta por um tempo",
+         alternativaE: "Tenta perceber o que a pessoa estava escondendo",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -349,7 +361,7 @@
          alternativaA: "Tenta manter todos unidos",
          alternativaB: "Assume o comando rapidamente",
          alternativaC: "Procura reorganizar a situação",
-         alternativaD: "Se adapta ao caos",
+         alternativaD: "Se adapta até que tudo volte ao normal",
          alternativaE: "Mantém a calma mesmo sob pressão",
 
          resultadoA: "atreides",
@@ -379,12 +391,12 @@
       },
 
       {
-         pergunta: "Qual dessas armas você escolheria?",
-         alternativaA: "Uma espada lendária",
-         alternativaB: "Algo brutal e intimidador",
-         alternativaC: "Um exército organizado",
-         alternativaD: "Uma faca simples e confiável",
-         alternativaE: "A própria mente",
+         pergunta: "Em um grupo, qual papel você normalmente assume?",
+         alternativaA: "Apoia e mantém todos unidos",
+         alternativaB: "Toma a liderança naturalmente",
+         alternativaC: "Organiza e mantém tudo funcionando",
+         alternativaD: "Resolve problemas na prática",
+         alternativaE: "Observa mais do que fala",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -417,8 +429,8 @@
          alternativaA: "Falhar com quem confia em você",
          alternativaB: "Ser visto como fraco",
          alternativaC: "Perder o controle da situação",
-         alternativaD: "Perder sua liberdade",
-         alternativaE: "Perder o controle sobre si mesmo",
+         alternativaD: "Viver preso em algo",
+         alternativaE: "Agir sem pensar com clareza",
 
          resultadoA: "atreides",
          resultadoB: "harkonnen",
@@ -427,7 +439,7 @@
          resultadoE: "beneGesserit",
 
          peso: 2,
-      }
+      },
 
    ]
 
@@ -645,6 +657,8 @@
 
       document.getElementById('tentarNovamente').style.display = 'block';
 
+      sessionStorage.removeItem("RESULTADO")
+
 
       if (
          pontuacoes.atreides > pontuacoes.harkonnen &&
@@ -775,16 +789,21 @@
 
             if (resposta.ok) {
                console.log('Respostas foram salvas');
-
+               return resposta.json();
             } else {
                console.log('Respostas não foram salvas');
-
             }
+
          })
          .then(function (dados) {
             console.log(dados);
-
             sessionStorage.ID_RESPOSTA = dados.idResposta;
+            sessionStorage.RESULTADO = dados.resultado;
+            sessionStorage.setItem("TESTE", "true");
+         })
+
+         .catch(function (erro) {
+            console.log(erro);
          });
 
    }

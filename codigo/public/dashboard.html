@@ -60,6 +60,7 @@
                document.getElementById("a_login").style.display = "block";
                sessionStorage.removeItem("login");
                window.location.reload()
+               sessionStorage.clear();
             }  
          </script>
 
@@ -71,6 +72,7 @@
 
       <div class="dashboard">
          <div id="titulo">
+            <h1 id="h1_tituloNome"></h1>
             <h1 class="titulo">Dashboard do Usuário</h1>
             <p class="subtitulo">
                Explore insights profundos sobre suas escolhas no teste de personalidade
@@ -82,43 +84,54 @@
 
          <div id="perfilCasa">
 
-            <div class="card resultadoUsuario">
+            <div id="resultadoUsuario" class="card resultadoUsuario">
                <!-- puxa os resultados desse usuario em um vetor e coloca tipo resultados[resultados.length - 1] -->
-               <div class="sobreACasa">
-                  <h1 class="nomeCasa">Casa Harkonnen</h1>
 
-                  <p class="fraseCasa">
-                     "O poder não conhece limites"
-                  </p><!-- puxar resultado e ver qual é a frase -->
+               <div id="cardResultado">
+                  <div id="sobreUsuario" style="display: none;">
+                     <div id="sobreACasa">
+                        <h1 id="nomeCasa"></h1>
+                        <p id="fraseCasa"></p><!-- puxar resultado e ver qual é a frase -->
+                        <p id="textinho"></p>
+                     </div>
+                  </div>
+
+                  <div id="caracteristicasCasa" class="caracteristicasCasa" style="display: none;">
+                     <h2>Características da Casa</h2>
+
+                     <div class="graficoRadar">
+                        <canvas id="radarCasa"></canvas>
+                     </div>
+                  </div>
                </div>
 
-               <div class="caracteristicasCasa">
-                  <h2>Características da Casa</h2>
 
-                  <div class="graficoRadar">
-                     <canvas id="radarCasa"></canvas>
-                  </div>
+               <div id="fazerTeste">
+                  <p>*Para ver os dados de usuário faça o Teste de Personalidade*</p>
+
+                  <button class="botao" onclick="facaOTeste()">FAÇA O TESTE</button>
                </div>
 
             </div>
 
-            <div class="card perfil">
+
+            <div id="perfil" class="card perfil">
 
                <h2>Perfil</h2>
 
                <div class="infoPerfil">
                   <h4>Nome</h4>
-                  <p>Lucas Espindola</p>
+                  <p id="p_nome"></p>
                </div>
 
                <div class="infoPerfil">
                   <h4>Email</h4>
-                  <p>lucas@gmail.com</p>
+                  <p id="p_email"></p>
                </div>
 
                <div class="infoPerfil">
                   <h4>Casa</h4>
-                  <p>Casa Harkonnen</p>
+                  <p id="p_resultado">Indefinido</p>
                </div>
 
             </div>
@@ -129,23 +142,23 @@
          <!-- KPIS -->
 
          <div id="dadosGerais">
-            <h1 class="titulo">Dados Gerais</h1>
+            <h1 class="titulos">Dados Gerais</h1>
 
             <div id="kpis">
 
-               <div class="card">
+               <div class="kpi card">
                   <h3>Total de Resultados</h3>
                   <p id="kpi_total"></p>
                </div>
 
-               <div class="card">
+               <div class="kpi card">
                   <h3>Casa Mais Popular</h3>
-                  <p>Fremen</p>
+                  <p id="kpi_resultadoMaisPopular"></p>
                </div>
 
-               <div class="card">
+               <div class="kpi card">
                   <h3>Casa Menos Popular</h3>
-                  <p>Bene Gesserit</p>
+                  <p id="kpi_resultadoMenosPopular"></p>
                </div>
 
             </div>
@@ -157,7 +170,7 @@
 
          <div id="graficosGerais">
             <div class="grafico card ">
-               <h2>Distribuição por Casa</h2>
+               <h2 id="titluloH2">Distribuição por Casa</h2>
                <p>
                   Quantidade total de resultados de usuários em cada Casa
                </p>
@@ -165,28 +178,32 @@
             </div>
 
             <div class="grafico card">
-               <h2>Usuários por Casa</h2>
+               <h2 id="titluloH2">Resultados por Casa</h2>
                <p>
                   Comparativo entre todas as Casas
                </p>
-               <canvas id="barraGeral"></canvas>
+               <canvas class="barras" id="barraGeral"></canvas>
             </div>
          </div>
 
          <!-- GRAFICOS USUARIO -->
-         <h1 class="titulo">Dados do usuário</h1>
+         <h1 class="titulos">Dados do usuário</h1>
 
-         <div id="graficosUsuario">
+         <div id="facaOTeste2">
+            <p>*Faça o Teste para ver seus dados*</p>
+         </div>
+
+         <div id="graficosUsuario" style="display: none;">
             <div class="grafico card">
-               <h2>Suas Escolhas por Casa</h2>
+               <h2 id="titluloH2">Suas Escolhas por Casa</h2>
                <p>
                   Veja quantas vezes você se alinhou com cada Casa
                </p>
-               <canvas id="barraUsuario"></canvas>
+               <canvas class="barras" id="barraUsuario"></canvas>
             </div>
 
             <div class="grafico card">
-               <h2>Proporção das Suas Escolhas</h2>
+               <h2 id="titluloH2">Proporção das Suas Escolhas</h2>
                <p>
                   Equilíbrio entre suas respostas
                </p>
@@ -198,17 +215,98 @@
    </section>
 
    <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
+      <p>Lucas Espindola Silva © 2026 TrialsOfDune.</p>
    </footer>
 
 </body>
-
 <script>
-   function buscarDados() {
+   function facaOTeste() {
+      window.location.href = "testePersonalidade.html"
+   }
 
-      buscarDadosKpiTotal()
+
+
+
+
+   let caracteristicasCasa = []
+   let cor = ''
+   let corFundo = ''
+
+   p_nome.innerHTML = sessionStorage.NOME_USUARIO;
+   p_email.innerHTML = sessionStorage.EMAIL_USUARIO;
+   h1_tituloNome.innerHTML = `Olá, ${sessionStorage.NOME_USUARIO}`
+
+   if (sessionStorage.RESULTADO == 'Casa Atreides') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #29572b'
+      document.getElementById('nomeCasa').style.color = '#29572b'
+
+      nomeCasa.innerHTML = `Casa Atreides`
+      p_resultado.innerHTML = `Casa Atreides`
+      fraseCasa.innerHTML = `"Aqui estou. Aqui permaneço."`
+      textinho.innerHTML = `Descendente de uma das famílias mais respeitadas do Império, a Casa Atreides ficou conhecida por governar através da honra, lealdade e respeito ao povo. Diferente de outras Grandes Casas, os Atreides conquistam aliados pela confiança, não pelo medo. Seu líder mais famoso é Paul Atreides, o protagonista da saga, treinado desde jovem para se tornar um líder capaz de mudar o destino do universo. Outro nome marcante é Leto Atreides, duque sábio e admirado até pelos inimigos. A personalidade dos Atreides mistura coragem, senso de justiça e estratégia política, mas sua compaixão muitas vezes os coloca em perigo dentro do jogo brutal do Império.`
+
+      caracteristicasCasa = [95, 78, 30, 82, 88]
+      cor = '#29572b'
+      corFundo = "rgba(41, 87, 43, 0.568)"
+   }
+   else if (sessionStorage.RESULTADO == 'Casa Harkonnen') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #471414'
+      document.getElementById('nomeCasa').style.color = '#471414'
+
+      nomeCasa.innerHTML = `Casa Harkonnen`
+      p_resultado.innerHTML = `Casa Harkonnen`
+      fraseCasa.innerHTML = `"É melhor ser temido do que amado."`
+      textinho.innerHTML = `A Casa Harkonnen é o completo oposto dos Atreides. Cruéis, manipuladores e obcecados por poder, governam através do medo e da violência. Seu líder mais conhecido é Barão Vladimir Harkonnen, um dos maiores vilões da ficção científica, famoso por sua inteligência sádica e seus planos políticos. Os Harkonnen exploraram Arrakis por décadas, enriquecendo através da especiaria enquanto oprimiam a população local. Sua personalidade é marcada pela ambição extrema, brutalidade e desejo de controle absoluto. Mesmo assim, são estrategistas extremamente perigosos e difíceis de derrotar.`
+
+      caracteristicasCasa = [15, 98, 60, 55, 92];
+      cor = '#471414';
+      corFundo = "rgba(71, 20, 20, 0.557)";
+   }
+   else if (sessionStorage.RESULTADO == 'Casa Corrino') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #b66522'
+      document.getElementById('nomeCasa').style.color = '#b66522'
+
+      nomeCasa.innerHTML = `Casa Corrino`
+      p_resultado.innerHTML = `Casa Corrino`
+      fraseCasa.innerHTML = `"A lei é a ciência suprema."`
+      textinho.innerHTML = `Durante milhares de anos, a Casa Corrino governou o Império como família imperial. Seu poder vem da tradição, influência política e domínio militar. O imperador Shaddam IV representa perfeitamente a casa: alguém disposto a sacrificar aliados e manipular conflitos para manter o trono. Os Corrino valorizam estabilidade, autoridade e controle acima de tudo, mas vivem constantemente com medo de perder o poder para outras Casas. Sua personalidade mistura orgulho imperial, diplomacia e paranoia política.`
+
+      caracteristicasCasa = [65, 90, 58, 85, 95]
+      cor = '#b66522';
+      corFundo = "rgba(182, 101, 34, 0.533)";
+   }
+   else if (sessionStorage.RESULTADO == 'Povo Fremen') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #a5915d'
+      document.getElementById('nomeCasa').style.color = '#a5915d'
+
+      nomeCasa.innerHTML = `Povo Fremen`
+      p_resultado.innerHTML = `Povo Fremen`
+      fraseCasa.innerHTML = ` "Nunca esquecer, nunca perdoar."`
+      textinho.innerHTML = `Os Fremen são os habitantes nativos do planeta Arrakis, sobrevivendo em um dos ambientes mais hostis do universo. Acostumados à escassez de água e aos perigos do deserto, desenvolveram uma cultura baseada em resistência, união e espiritualidade. Guerreiros extremamente habilidosos, conseguem enfrentar exércitos inteiros utilizando o próprio deserto ao seu favor. Personagens como Stilgar e Chani mostram a força e a conexão espiritual desse povo. A personalidade Fremen é resiliente, disciplinada e profundamente adaptável.`
+
+      caracteristicasCasa = [88, 42, 100, 80, 76]
+      cor = '#a5915d';
+      corFundo = "rgba(165, 145, 93, 0.616)";
 
    }
+   else if (sessionStorage.RESULTADO == 'Irmandade Bene Gesserit') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #483D8B'
+      document.getElementById('nomeCasa').style.color = '#483D8B'
+
+      nomeCasa.innerHTML = `Irmandade Bene Gesserit`
+      p_resultado.innerHTML = `Irmandade Bene Gesserit`
+      fraseCasa.innerHTML = ` "Eu não devo temer. O medo é o assassino da mente."`
+      textinho.innerHTML = `A Bene Gesserit é uma organização secreta formada por mulheres treinadas física e mentalmente durante gerações. Seu verdadeiro poder não está em exércitos, mas em manipulação política, conhecimento e influência silenciosa. As Bene Gesserit estudam genética, religião e psicologia para moldar o futuro da humanidade. Personagens como Lady Jessica e Reverenda Madre Gaius Helen Mohiam representam a inteligência e disciplina da irmandade. Sua personalidade é estratégica, calculista e extremamente paciente, sempre pensando muitos passos à frente.`
+
+      caracteristicasCasa = [40, 84, 87, 100, 98]
+      cor = '#483D8B';
+      corFundo = "rgba(71, 61, 138, 0.445)";
+
+   }
+   else if (sessionStorage.RESULTADO == '') {
+      document.getElementById('resultadoUsuario').style.border = '3px solid #b38148'
+   }
+
 
    function buscarDadosKpiTotal() {
 
@@ -232,200 +330,379 @@
 
    }
 
+   function buscarDadosKpiResultados() {
 
+      fetch("/respostas/resultadoMaisMenosPopular")
+         .then(function (resposta) {
 
+            return resposta.json();
+         })
+         .then(function (dados) {
 
+            console.log(dados);
+            let maisPopular = dados[0].resultado;
+            let menosPopular = dados[dados.length - 1].resultado;
 
-   // =========================
-   // RADAR CASA
-   // =========================
+            document.getElementById("kpi_resultadoMaisPopular").innerHTML = maisPopular;
+            document.getElementById("kpi_resultadoMenosPopular").innerHTML = menosPopular;
 
-   new Chart(document.getElementById('radarCasa'), {
-      type: 'radar',
-      data: {
-         labels: ['Honra', 'Poder', 'Adaptação', 'Sabedoria', 'Estratégia'],
-         datasets: [{
-            label: 'Casa Harkonnen',
-            data: [20, 90, 40, 55, 85],
-            backgroundColor: 'rgba(180,70,70,0.4)',
-            borderColor: '#b44646',
-            pointBackgroundColor: '#b44646'
-         }]
-      },
-      options: {
-         scales: {
-            r: {
-               grid: {
-                  color: '#6d4618'
-               },
-               angleLines: {
-                  color: '#6d4618'
-               },
-               pointLabels: {
-                  color: '#f0d2a3'
-               },
-               ticks: {
-                  color: '#f0d2a3',
-                  backdropColor: 'transparent'
-               }
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+
+   }
+
+   function buscarDadosGraficoPizzaGeral() {
+
+      fetch("/respostas/qtdResultadosPorcentagem")
+         .then(function (resposta) {
+
+            return resposta.json();
+
+         })
+         .then(function (dados) {
+
+            let valoresPizzaGeral = []
+
+            console.log(dados);
+
+            for (let i = 0; i < dados.length; i++) {
+
+               valoresPizzaGeral.push(dados[i].porcentagem)
+
             }
+
+            console.log(valoresPizzaGeral)
+
+            const dataPizza = {
+               labels: [
+                  'Atreides',
+                  'Harkonnen',
+                  'Corrino',
+                  'Fremen',
+                  'Bene Gesserit'
+               ],
+               datasets: [{
+                  data: valoresPizzaGeral,
+                  backgroundColor: [
+                     '#29572b',
+                     '#471414',
+                     '#b66522',
+                     '#a5915d',
+                     '#483D8B'
+                  ]
+               }]
+            };
+
+            new Chart(document.getElementById('pizzaGeral'), {
+               type: 'pie',
+               data: dataPizza,
+               options: {
+                  plugins: {
+                     legend: {
+                        position: 'right',
+                        labels: {
+                           color: '#f0d2a3'
+                        }
+                     }
+                  }
+               }
+            });
+
+
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+
+   }
+
+   function buscarDadosGraficoBarrasGeral() {
+
+      fetch("/respostas/qtdUsuariosCasa")
+         .then(function (resposta) {
+
+            return resposta.json();
+         })
+         .then(function (dados) {
+
+            let valoresBarrasGeral = []
+
+            console.log(dados);
+
+            for (let i = 0; i < dados.length; i++) {
+               valoresBarrasGeral.push(dados[i].quantidade)
+            }
+            console.log(valoresBarrasGeral)
+
+            new Chart(document.getElementById('barraGeral'), {
+               type: 'bar',
+               data: {
+                  labels: [
+                     'Atreides',
+                     'Harkonnen',
+                     'Corrino',
+                     'Fremen',
+                     'Bene Gesserit'
+                  ],
+                  datasets: [{
+                     label: 'Usuários',
+                     data: valoresBarrasGeral,
+                     backgroundColor: [
+                        '#29572b',
+                        '#471414',
+                        '#b66522',
+                        '#a5915d',
+                        '#483D8B'
+                     ]
+                  }]
+               },
+               options: {
+                  responsive: true,
+                  borderRadius: 4,
+                  scales: {
+                     x: {
+                        grid: {
+                           color: '#2a1a0f'
+                        }
+                     },
+                     y: {
+                        grid: {
+                           color: '#2a1a0f'
+                        }
+                     }
+                  }
+               }
+            });
+
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+   }
+
+   function buscarDadosGraficoBarrasUsuario() {
+      fetch(`/respostas/qtdAlternativa/${sessionStorage.ID_USUARIO}/${sessionStorage.ID_RESPOSTA}`)
+         .then(function (resposta) {
+
+            return resposta.json();
+         })
+         .then(function (dados) {
+
+            let valoresBarrasUsuario = [
+               dados[0].totalA,
+               dados[0].totalB,
+               dados[0].totalC,
+               dados[0].totalD,
+               dados[0].totalE
+            ]
+
+            console.log(dados);
+
+            console.log(sessionStorage.ID_USUARIO)
+            console.log(sessionStorage.ID_RESPOSTA)
+
+            console.log(valoresBarrasUsuario)
+
+            new Chart(document.getElementById('barraUsuario'), {
+               type: 'bar',
+               data: {
+                  labels: [
+                     'Atreides',
+                     'Harkonnen',
+                     'Corrino',
+                     'Fremen',
+                     'Bene Gesserit'
+                  ],
+                  datasets: [{
+                     label: 'Usuários',
+                     data: valoresBarrasUsuario,
+                     borderRadius: 8,
+                     backgroundColor: [
+                        '#29572b',
+                        '#471414',
+                        '#b66522',
+                        '#a5915d',
+                        '#483D8B'
+                     ]
+                  }]
+               },
+               options: {
+                  indexAxis: 'y',
+                  scales: {
+                     x: {
+                        beginAtZero: true,
+                        ticks: {
+                           color: '#f0d2a3'
+                        },
+                        grid: {
+                           color: '#2a1a0f'
+                        }
+                     },
+                     y: {
+                        ticks: {
+                           color: '#f0d2a3'
+                        },
+                        grid: {
+                           color: '#2a1a0f'
+                        }
+                     }
+                  },
+                  plugins: {
+                     legend: {
+                        display: false
+                     }
+                  }
+               }
+            });
+
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+   }
+
+
+   function buscarDadosGraficoPizzaUsuario() {
+      fetch(`/respostas/qtdAlternativaPorcentagem/${sessionStorage.ID_USUARIO}/${sessionStorage.ID_RESPOSTA}`)
+         .then(function (resposta) {
+
+            return resposta.json();
+         })
+         .then(function (dados) {
+
+            let valoresPizzaUsuario = [
+               Number(dados[0].Atreides),
+               Number(dados[0].Harkonnen),
+               Number(dados[0].Corrino),
+               Number(dados[0].Fremen),
+               Number(dados[0].BeneGesserit)
+            ]
+
+            console.log(dados);
+
+            
+            console.log(sessionStorage.ID_USUARIO)
+            console.log(sessionStorage.ID_RESPOSTA)
+
+            console.log(valoresPizzaUsuario)
+
+            new Chart(document.getElementById('pizzaUsuario'), {
+               type: 'pie',
+               data: {
+                  labels: [
+                     'Atreides',
+                     'Harkonnen',
+                     'Corrino',
+                     'Fremen',
+                     'Bene Gesserit'
+                  ],
+                  datasets: [{
+                     data: valoresPizzaUsuario,
+                     backgroundColor: [
+                        '#29572b',
+                        '#471414',
+                        '#b66522',
+                        '#a5915d',
+                        '#483D8B'
+                     ]
+                  }]
+               },
+               options: {
+                  plugins: {
+                     legend: {
+                        position: 'left',
+                        labels: {
+                           color: '#f0d2a3'
+                        }
+                     }
+                  }
+               }
+            });
+
+         })
+         .catch(function (erro) {
+
+            console.log(erro);
+
+         });
+
+   }
+
+   function criarRadarCasa() {
+
+      new Chart(document.getElementById('radarCasa'), {
+         type: 'radar',
+         data: {
+            labels: ['Honra', 'Poder', 'Adaptação', 'Sabedoria', 'Estratégia'],
+            datasets: [{
+               label: sessionStorage.RESULTADO,
+               data: caracteristicasCasa,
+               backgroundColor: corFundo,
+               borderColor: cor,
+               pointBackgroundColor: cor
+            }]
          },
-         plugins: {
-            legend: {
-               labels: {
-                  color: '#b44646'
-               }
-            }
-         }
-      }
-   });
-
-   // =========================
-   // DADOS PIZZA GERAL
-   // =========================
-
-   const dataPizza = {
-      labels: [
-         'Atreides',
-         'Harkonnen',
-         'Corrino',
-         'Fremen',
-         'Bene Gesserit'
-      ],
-      datasets: [{
-         data: [27, 10, 8, 33, 22],
-         backgroundColor: [
-            '#4f83aa',
-            '#943939',
-            '#d4af37',
-            '#c2b280',
-            '#483D8B'
-         ]
-      }]
-   };
-
-   new Chart(document.getElementById('pizzaGeral'), {
-      type: 'pie',
-      data: dataPizza,
-      options: {
-         plugins: {
-            legend: {
-               position: 'right',
-               labels: {
-                  color: '#f0d2a3'
-               }
-            }
-         }
-      }
-   });
-
-   // =========================
-   // BARRA GERAL
-   // =========================
-
-   new Chart(document.getElementById('barraGeral'), {
-      type: 'bar',
-      data: {
-         labels: [
-            'Atreides',
-            'Harkonnen',
-            'Corrino',
-            'Fremen',
-            'Bene Gesserit'
-         ],
-         datasets: [{
-            label: 'Usuários',
-            data: [42, 28, 15, 51, 35],
-            backgroundColor: [
-               '#4f83aa',
-               '#943939',
-               '#d4af37',
-               '#d1a46f',
-               '#74567f'
-            ],
-            borderRadius: 8
-         }]
-      },
-
-   });
-
-   // =========================
-   // BARRA USUARIO
-   // =========================
-
-   new Chart(document.getElementById('barraUsuario'), {
-      type: 'bar',
-      data: {
-         labels: ['Harkonnen', 'Atreides', 'Fremen'],
-         datasets: [{
-            data: [11, 2, 2, 0, 0],
-            backgroundColor: [
-               '#4f83aa',
-               '#943939',
-               '#d4af37',
-               '#d1a46f',
-               '#74567f'
-            ],
-            borderRadius: 8
-         }]
-      },
-      options: {
-         indexAxis: 'y',
-         scales: {
-            x: {
-               beginAtZero: true,
-               ticks: {
-                  color: '#f0d2a3'
-               },
-               grid: {
-                  color: '#2a1a0f'
+         options: {
+            scales: {
+               r: {
+                  grid: {
+                     color: '#6d4618'
+                  },
+                  angleLines: {
+                     color: '#6d4618'
+                  },
+                  pointLabels: {
+                     color: '#f0d2a3'
+                  },
+                  ticks: {
+                     color: '#f0d2a3',
+                     backdropColor: 'transparent'
+                  }
                }
             },
-            y: {
-               ticks: {
-                  color: '#f0d2a3'
-               },
-               grid: {
-                  color: '#2a1a0f'
-               }
-            }
-         },
-         plugins: {
-            legend: {
-               display: false
-            }
-         }
-      }
-   });
-
-   // =========================
-   // PIZZA USUARIO
-   // =========================
-
-   new Chart(document.getElementById('pizzaUsuario'), {
-      type: 'pie',
-      data: {
-         labels: ['Harkonnen', 'Atreides', 'Corrino', 'Fremen', 'Bene Gesserit'],
-         datasets: [{
-            data: [73, 13, 13, 1, 0],
-            backgroundColor: [
-               '#4f83aa',
-               '#943939',
-               '#d4af37',
-               '#d1a46f',
-               '#74567f'
-            ]
-         }]
-      },
-      options: {
-         plugins: {
-            legend: {
-               position: 'left',
-               labels: {
-                  color: '#f0d2a3'
+            plugins: {
+               legend: {
+                  labels: {
+                     color: cor
+                  }
                }
             }
          }
+      });
+
+   }
+
+   function buscarDados() {
+
+      buscarDadosKpiTotal();
+      buscarDadosKpiResultados();
+      buscarDadosGraficoPizzaGeral();
+      buscarDadosGraficoBarrasGeral();
+
+
+      if (sessionStorage.getItem("TESTE")) {
+         document.getElementById("sobreUsuario").style.display = "block"
+         document.getElementById("fazerTeste").style.display = "none"
+         document.getElementById("facaOTeste2").style.display = "none"
+         document.getElementById("graficosUsuario").style.display = "flex"
+         document.getElementById("caracteristicasCasa").style.display = "flex"
+         document.getElementById("pizzaUsuario").style.display = "block"
+         document.getElementById("radarCasa").style.display = "block"
+
+         criarRadarCasa()
+         buscarDadosGraficoBarrasUsuario();
+         buscarDadosGraficoPizzaUsuario();
       }
-   });
+   }
+
 </script>

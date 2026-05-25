@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Trials of Dune | Teste Simples</title>
+   <title>Trials of Dune | Teste de Personalidade</title>
    <link rel="stylesheet" href="css/testePersonalidade.css">
 </head>
 
@@ -38,13 +38,17 @@
             <li id="a_login">
                <a href="login.html">LOGIN</a>
             </li>
-            <li id="a_dashboard">
+            <li id="a_dashboard" style="display: none;">
                <a href="dashboard.html">DASHBOARD</a>
             </li>
-            <li id="a_sair">
+            <li id="a_sair" style="display: none;">
                <a onclick="sair()">SAIR</a>
             </li>
          </ul>
+
+         <script>
+
+         </script>
 
       </nav>
    </header>
@@ -53,10 +57,14 @@
 
       <div id="iniciarTeste">
          <h1 class="cabecalho">Descubra sua Casa em Duna</h1>
-         <p class="textinho">Responda a algumas perguntas e descubra qual Casa Noble você pertence e qual personagem do
-            universo de Duna
-            melhor representa sua personalidade.</p>
-         <button class="button" onclick="iniciarTeste()">Iniciar Teste</button>
+
+         <p class="textinho">Responda a algumas perguntas e descubra qual Casa Maior você pertence e qual personagem do
+            universo de Duna melhor representa sua personalidade.</p>
+
+         <button id="btn_iniciarTeste" onclick="iniciarTeste()" disabled=true>Iniciar Teste</button>
+
+         <p id="textinhoNaoLogado" class="textinho">*É necessário logar em sua conta para fazer o Teste de
+            Personalidade*</p>
       </div>
 
       <div id="teste">
@@ -101,7 +109,7 @@
             </span>
          </div>
 
-         <div id="botoes">
+         <div class="botoes">
             <button class="botao" id="btn_voltar" onclick="voltarPergunta()" disabled>Pergunta Anterior</button>
 
             <button class="botao" id="btn_submeter" onclick="submeterResposta()" disabled>Submeter Resposta</button>
@@ -132,19 +140,27 @@
             </div>
          </div>
          -->
+         
+         <div id="botaos" class="botoes">
+            <button class="botao" id="tentarNovamente" onclick="tentarNovamente()">Refazer Teste</button>
+            <button class="botao" id="verDash" onclick="verDash()">Ver DashBoard</button>
+         </div>
 
-         <button class="botao" id="tentarNovamente" onclick="tentarNovamente()">Refazer Teste</button>
       </div>
    </section>
 
    <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
+      <p>Lucas Espindola Silva © 2026 TrialsOfDune.</p>
    </footer>
 
 
 </body>
 
 <script>
+
+   function verDash(){
+      window.location.href = "dashboard.html"
+   }
 
    if (sessionStorage.getItem("login")) {
       document.getElementById("a_dashboard").style.display = "block";
@@ -161,6 +177,7 @@
       document.getElementById("a_sair").style.display = "none";
       document.getElementById("a_login").style.display = "block";
       sessionStorage.removeItem("login")
+      window.location.reload()
    }
 
    const listaDeQuestoes = [

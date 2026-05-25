@@ -1,13 +1,5 @@
 var respostaModel = require("../models/respostaModel");
 
-function listar(req, res) {
-    respostaModel.listar().then(function (resultado) {
-        // precisamos informar que o resultado voltará para o front-end como uma resposta em json
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
 
 function cadastrar(req, res) {
     var resposta1 = req.body.respostasServer[0];
@@ -28,38 +20,117 @@ function cadastrar(req, res) {
     var resultado = req.body.resultadoServer;
     var fkUsuario = req.body.fkUsuarioServer;
 
-    respostaModel.cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, resposta6, resposta7, resposta8, resposta9, resposta10, resposta11, resposta12, resposta13, resposta14, resposta15, resultado, fkUsuario).then(function (resposta) {
-        res.status(200).send("Respostas registradas com sucesso");
+    respostaModel.cadastrar(resposta1, resposta2, resposta3, resposta4, resposta5, resposta6, resposta7, resposta8, resposta9, resposta10, resposta11, resposta12, resposta13, resposta14, resposta15, resultado, fkUsuario)
+        .then(function (resultadoBanco) {
 
-        console.log(resultado);
+            console.log(resultado);
 
-        res.json({
-            idResposta: resultado.insertId
+            res.json({
+                idResposta: resultadoBanco.insertId,
+                resultado: resultado
+            });
+
+        }).catch(function (erro) {
+
+            console.log(erro);
+            res.status(500).json(erro);
+
         });
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro);
-    })
 }
 
-    function totalRespostas(req, res){
+function totalRespostas(req, res) {
 
     respostaModel.totalRespostas()
+        .then(function (resultado) {
+
+            res.status(200).json(resultado);
+
+        }).catch(function (erro) {
+
+            console.log(erro);
+
+            res.status(500).json(erro.sqlMessage);
+
+        })
+}
+
+function resultadoMaisMenosPopular(req, res) {
+    respostaModel.resultadoMaisMenosPopular()
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+
+        }).catch(function (erro) {
+            console.log(erro);
+
+            res.status(500).json(erro.sqlMessage)
+        })
+}
+
+function qtdResultadosPorcentagem(req, res) {
+    respostaModel.qtdResultadosPorcentagem()
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+
+        }).catch(function (erro) {
+            console.log(erro);
+
+            res.status(500).json(erro.sqlMessage)
+        })
+}
+
+function qtdUsuariosCasa(req, res) {
+    respostaModel.qtdUsuariosCasa()
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+
+        }).catch(function (erro) {
+            console.log(erro);
+
+            res.status(500).json(erro.sqlMessage)
+        })
+}
+
+function qtdAlternativa(req, res){
+    var fkUsuario = req.params.fkUsuario;
+    var idResposta = req.params.idResposta;
+
+    respostaModel.qtdAlternativa(fkUsuario, idResposta)
     .then(function(resultado){
+        res.json(resultado);
 
-        res.status(200).json(resultado);
-
-    }).catch(function(erro){
-
+    })
+    .catch(function(erro){
         console.log(erro);
+        res.status(500).json(erro);
 
-        res.status(500).json(erro.sqlMessage);
+    });
 
-    })}
+}
+
+function qtdAlternativaPorcentagem(req, res){
+    var fkUsuario = req.params.fkUsuario;
+    var idResposta = req.params.idResposta;
+
+    respostaModel.qtdAlternativaPorcentagem(fkUsuario, idResposta)
+    .then(function(resultado){
+        res.json(resultado);
+
+    })
+    .catch(function(erro){
+        console.log(erro);
+        res.status(500).json(erro);
+
+    });
+
+}
 
 
 module.exports = {
-    listar,
     cadastrar,
-    totalRespostas
+    totalRespostas,
+    resultadoMaisMenosPopular,
+    qtdResultadosPorcentagem,
+    qtdUsuariosCasa,
+    qtdAlternativa,
+    qtdAlternativaPorcentagem
 }

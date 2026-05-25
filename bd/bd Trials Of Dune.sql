@@ -52,20 +52,18 @@ SELECT resultado, COUNT(resultado) FROM respostas -- nao selecionar o COUNT no m
 -- Quantidade de Resultados por casa em %
     SELECT resultado,
     COUNT(*) AS quantidade, -- conta todos os resultados
-    ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM respostas), 2) AS porcentagem
-FROM respostas
-GROUP BY resultado
-ORDER BY FIELD(
-    resultado,
+    ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM respostas), 2) AS porcentagem FROM respostas
+    GROUP BY resultado
+    ORDER BY FIELD(resultado,
     'Casa Atreides',
     'Casa Harkonnen',
     'Casa Corrino',
     'Povo Fremen',
-    'Irmandade Bene Gesserit'
-);
+    'Irmandade Bene Gesserit');
 
-SELECT resultado,COUNT(usuario.id) FROM respostas -- Quantidade de Resultados por casa
-	JOIN usuario On usuario.id = fkUsuario
+-- Quantidade de Resultados por casa
+SELECT resultado,COUNT(usuario.id) AS quantidade FROM respostas 
+	JOIN usuario ON usuario.id = fkUsuario
     GROUP BY (resultado)
     ORDER BY FIELD(resultado,
     'Casa Atreides',
@@ -74,6 +72,7 @@ SELECT resultado,COUNT(usuario.id) FROM respostas -- Quantidade de Resultados po
     'Povo Fremen',
     'Irmandade Bene Gesserit');
 
+-- Quantas vezes usuario respondeu cada pergunta
 SELECT 
 
 -- TOTAL A

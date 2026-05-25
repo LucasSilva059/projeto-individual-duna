@@ -126,24 +126,25 @@ body {
    display: flex;
    flex-direction: column;
    width: 40vw;
-   height: 80vh;
+   height: 55vh;
    margin-bottom: 1vh;
    padding: 1vw;
    background-color: #0b0806;
    border: solid 1px #b38148;
    transition: 0.5s;
    color: #a7937d;
-   justify-content: space-between;
-   padding-bottom: 3vh;
+   justify-content: flex-start; 
+   gap: 2vh;                  
 }
 
 .card h1{
+   color: #b38148;;
    font-size:1.9vw;
 }
 
 .card p{
    max-width: 350px;
-   font-size: 1.2vw;
+   font-size: 1.3vw;
 }
 
 .card img {
@@ -155,6 +156,7 @@ body {
    display: flex;
    flex-direction: row;
    justify-content: space-between;
+   margin-top: 2vh;
 }
 
 

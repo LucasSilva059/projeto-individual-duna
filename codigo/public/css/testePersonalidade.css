@@ -127,6 +127,16 @@ body {
    max-width: 800px;
    padding: 20px;
 }
+#a_naoLogado{
+   display: flex;
+   justify-content: center;
+   color: #b38148;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 20px;
+   text-align: center;
+   font-weight: 800;
+   margin-top: 0;
+}
 
 #iniciarTeste button {
    width: 15vw;
@@ -235,9 +245,20 @@ body {
 }
 
 
-#botoes {
-   display: flex;
+.botoes {
    gap: 2vh;
+}
+
+#botaos {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   gap: 2vw;
+   margin-top: 3vh;
+}
+
+#botaos .botao {
+   width: 13vw;
 }
 
 .botao {
@@ -278,9 +299,17 @@ body {
    padding: 1vw;
 
    width: 60vw;
-   height: 72vh;
 
    background-color: #0b0806;
+   display: flex;            
+   flex-direction: column;   
+   justify-content: center;  
+   align-items: center; 
+}
+
+#resultado button {
+   display: block;
+   font-weight: 600;
 }
 
 #DivTextoResultado{

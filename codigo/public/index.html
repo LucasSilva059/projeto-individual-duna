@@ -58,6 +58,7 @@
                document.getElementById("a_sair").style.display = "none";
                document.getElementById("a_login").style.display = "block";
                sessionStorage.removeItem("login");
+               sessionStorage.clear();
                window.location.href = "login.html"
             }  
          </script>
@@ -66,17 +67,6 @@
    </header>
 
    <main>
-
-      <script>
-         if(localStorage.getItem("logado")){
-            // desabilitar boatãos especificos
-            document.getElementById
-         }
-
-         function sair(){
-            // habilitar os q tinham sido desabilitados
-         }
-      </script>
 
       <section>
          <div class="banner">
@@ -111,10 +101,14 @@
          <div class="textoDuna">
             <h1>O Universo de Duna</h1>
             <p>
-               O universo de Duna gira em torno de Arrakis, um planeta deserto onde se encontra a especiaria mais
-               valiosa do universo. Essencial para viagens espaciais e para o controle político, ela é o centro de
-               conflitos entre grandes casas e povos nativos. Entre poder, religião e sobrevivência, Duna apresenta um
-               mundo onde cada decisão pode mudar o destino de todo um império.
+               Duna é uma das obras de ficção científica mais influentes de todos os tempos, criada por Frank Herbert. A
+               história se passa em Arrakis, um planeta desértico onde existe a especiaria mais valiosa do universo: a
+               Melange, recurso capaz de ampliar habilidades mentais e tornar possíveis as viagens espaciais.<br>
+
+               Em meio a guerras, traições e disputas entre grandes Casas, acompanhamos a jornada de Paul Atreides em um
+               universo marcado por política, religião, sobrevivência e ambição. Muito além de uma simples história
+               espacial, Duna constrói um mundo profundo e complexo que continua conquistando fãs através dos livros e
+               das adaptações para o cinema.
             </p>
          </div>
 
@@ -148,7 +142,7 @@
    </main>
 
    <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
+      <p>Lucas Espindola Silva © 2026 TrialsOfDune.</p>
    </footer>
 
 </body>

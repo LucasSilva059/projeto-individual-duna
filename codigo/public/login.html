@@ -59,6 +59,7 @@
                document.getElementById("a_login").style.display = "block";
                sessionStorage.removeItem("login");
                window.location.reload();
+               sessionStorage.clear();
             }  
          </script>
 
@@ -91,7 +92,7 @@
    </section>
 
    <footer class="footer">
-      <p>© 2026 TrialsOfDune.</p>
+      <p>Lucas Espindola Silva © 2026 TrialsOfDune.</p>
    </footer>
 
 </body>
@@ -133,6 +134,8 @@
 
                   
                   sessionStorage.setItem("login", "true")
+
+                  alert(`Olá ${sessionStorage.NOME_USUARIO}, login efetuado, te redirecionando para Dashboard`)
 
                   console.log("login efetuado com sucesso!")
                   setTimeout(function () {

@@ -341,7 +341,8 @@
 
             console.log(dados);
             let maisPopular = dados[0].resultado;
-            let menosPopular = dados[dados.length - 1].resultado;
+            let tamanho = dados.length;
+            let menosPopular = dados[tamanho - 1].resultado;
 
             document.getElementById("kpi_resultadoMaisPopular").innerHTML = maisPopular;
             document.getElementById("kpi_resultadoMenosPopular").innerHTML = menosPopular;

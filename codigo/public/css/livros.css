@@ -126,7 +126,7 @@ body {
    display: flex;
    flex-direction: column;
    width: 40vw;
-   height: 61vh;
+   height: 57vh;
    margin-bottom: 1vh;
    padding: 1vw;
    background-color: #0b0806;
@@ -144,7 +144,7 @@ body {
 
 .card p{
    max-width: 350px;
-   font-size: 1.2vw;
+   font-size: 1.4vw;
 }
 
 .card img {

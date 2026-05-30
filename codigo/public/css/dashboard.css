@@ -151,6 +151,7 @@ canvas{
 }
 
 #fraseCasa{
+   font-family:'Cambria, Cochin, Georgia, Times, 'Times New Roman', serif';
    margin-top: 3vh;
    font-size: 1.5vw;
 }
@@ -159,7 +160,7 @@ canvas{
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    margin-top: 4vh;
    max-width: 26vw;
-   font-size: 1.1vw;
+   font-size: 1.3vw;
 }
 
 #cardResultado{

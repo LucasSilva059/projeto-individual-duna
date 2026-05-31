@@ -117,6 +117,7 @@
 
             <button class="botao" id="btn_proxima" onclick="proximaPergunta()" disabled>Próxima Pergunta</button>
          </div>
+
          <div id="botao_mostrar">
             <button class="botao" id="btn_mostrar" onclick="mostrarResultado()" disabled>Mostrar resultado</button>
          </div>
@@ -482,22 +483,17 @@
 
    // funcao para colocar a pergunta na tela
    function preencherHTMLcomQuestaoAtual() {
-      habilitarAlternativas(true);
+      habilitarAlternativas(true); // habilita as alternativas
 
       const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
 
       document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = numeroDaQuestaoAtual + 1 // +1 pq o index começa em 0
 
       document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-
       document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-
       document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-
       document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-
       document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
-
       document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
    }
 
@@ -560,27 +556,26 @@
       desmarcarRadioButtons()
 
       // verifica se ainda tem questões sobrando
-      if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+      if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
          preencherHTMLcomQuestaoAtual()
-      }
-      else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-         alert("Atenção... a próxima é a ultima questão!")
-         preencherHTMLcomQuestaoAtual()
-
-      } else {
-         mostrarResultado()
       }
    }
 
-   /*Essa parte do código pega o valor que foi enviado para a função e troca ele pelo contrário. Se receber true, transforma em false. Se receber false, transforma em true. Depois, esse novo valor é usado no .disabled dos botões. Como .disabled = true desativa um botão e .disabled = false ativa, a função serve basicamente para ligar ou desligar as alternativas da pergunta.*/
-   function habilitarAlternativas(trueOrFalse) {
-      let opcaoEscolhida = trueOrFalse ? false : true
 
-      primeiraOpcao.disabled = opcaoEscolhida
-      segundaOpcao.disabled = opcaoEscolhida
-      terceiraOpcao.disabled = opcaoEscolhida
-      quartaOpcao.disabled = opcaoEscolhida
-      quintaOpcao.disabled = opcaoEscolhida
+   function habilitarAlternativas(trueOrFalse) {
+      if (trueOrFalse == true) {
+         primeiraOpcao.disabled = false;
+         segundaOpcao.disabled = false;
+         terceiraOpcao.disabled = false;
+         quartaOpcao.disabled = false;
+         quintaOpcao.disabled = false;
+      } else {
+         primeiraOpcao.disabled = true;
+         segundaOpcao.disabled = true;
+         terceiraOpcao.disabled = true;
+         quartaOpcao.disabled = true;
+         quintaOpcao.disabled = true;
+      }
 
    }
 
@@ -590,67 +585,59 @@
    }
 
    function desmarcarRadioButtons() {
-      const options = document.getElementsByName("option");
+      let options = document.getElementsByName("option");
       for (let i = 0; i < options.length; i++) {
          options[i].checked = false;
       }
    }
 
    function checarResposta() {
-      const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-      const options = document.getElementsByName("option")
-      let respostaEscolhida = false
+      const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+      let options = document.getElementsByName("option");
+      let respostaEscolhida = false;
 
-      options.forEach((option) => {
+      for (let i = 0; i < options.length; i++) {
+         let option = options[i];
 
          if (option.checked) {
-            respostaEscolhida = true
+            respostaEscolhida = true;
 
-            // ALTERNATIVA A
-            if (option.value == "alternativaA") { //ele pega a pontuação da casa especifica da constante 'questao atual' olhando o 'resultadoA' e soma a quantidade de pontos que é o peso da questao atual
+            if (option.value == "alternativaA") {
                pontuacoes[questaoAtual.resultadoA] += questaoAtual.peso;
                respostasUsuario.push('A');
             }
-
-            // ALTERNATIVA B
             else if (option.value == "alternativaB") {
                pontuacoes[questaoAtual.resultadoB] += questaoAtual.peso;
                respostasUsuario.push('B');
             }
-
-            // ALTERNATIVA C
             else if (option.value == "alternativaC") {
                pontuacoes[questaoAtual.resultadoC] += questaoAtual.peso;
                respostasUsuario.push('C');
             }
-
-            // ALTERNATIVA D
             else if (option.value == "alternativaD") {
                pontuacoes[questaoAtual.resultadoD] += questaoAtual.peso;
                respostasUsuario.push('D');
             }
-
-            // ALTERNATIVA E
             else if (option.value == "alternativaE") {
                pontuacoes[questaoAtual.resultadoE] += questaoAtual.peso;
                respostasUsuario.push('E');
             }
+            break; // para a repetição depois de encontrar a resposta marcada
          }
-      })
+      }
 
-      // verifica se escolheu algo
       if (!respostaEscolhida) {
-         alert("Escolha uma alternativa.")
-         return
+         alert("Escolha uma alternativa.");
+         return;
       }
    }
 
    function mostrarResultado() {
       let mensagem = ""
-      let nomeP1 = ""
-      let nomeP2 = ""
-      let fotoP1 = ""
-      let fotoP2 = ""
+      // let nomeP1 = ""
+      // let nomeP2 = ""
+      // let fotoP1 = ""
+      // let fotoP2 = ""
 
       document.getElementById('resultado').style.display = 'block';
       document.getElementById('teste').style.display = 'none';
@@ -671,11 +658,11 @@
          resultadoFinal = 'Casa Atreides';
          mensagem = 'Nobre, honrada e leal. A Casa Atreides é conhecida por sua liderança justa, coragem e forte senso de responsabilidade. Você provavelmente é alguém que valoriza a confiança, a empatia e o respeito pelas pessoas ao seu redor. Em vez de buscar poder a qualquer custo, prefere conquistar admiração através de suas atitudes e princípios.<br> Assim como os Atreides, você tende a assumir responsabilidades naturalmente e costuma proteger aqueles que considera importantes. Sua força não está apenas em liderança, mas também na capacidade de inspirar e unir pessoas mesmo em momentos difíceis.';
 
-         nomeP1 = "Paul Atreides";
-         nomeP2 = "Leto Atreides";
+         // nomeP1 = "Paul Atreides";
+         // nomeP2 = "Leto Atreides";
 
-         fotoP1 = `<img src="assets/imgs/paul atreides.jpg" alt="Paul Atreides">`
-         fotoP2 = `<img src="assets/imgs/leto atreides.jpg" alt="Leto Atreides">`
+         // fotoP1 = `<img src="assets/imgs/paul atreides.jpg" alt="Paul Atreides">`
+         // fotoP2 = `<img src="assets/imgs/leto atreides.jpg" alt="Leto Atreides">`
       }
       else if (
          pontuacoes.harkonnen > pontuacoes.atreides &&
@@ -688,11 +675,11 @@
          resultadoFinal = 'Casa Harkonnen';
          mensagem = 'Ambiciosa, intensa e implacável. A Casa Harkonnen representa força, domínio e a busca incessante por poder. Você provavelmente possui uma personalidade marcante, competitiva e determinada, sempre tentando alcançar seus objetivos independentemente dos obstáculos.<br> Assim como os Harkonnen, você não gosta de parecer fraco e prefere manter o controle das situações. Sua presença costuma ser forte e intimidadora, e sua ambição pode fazer com que vá além do que os outros considerariam possível.';
 
-         nomeP1 = "Vladimir Harkonnen";
-         nomeP2 = "Feyd-Rautha";
+         // nomeP1 = "Vladimir Harkonnen";
+         // nomeP2 = "Feyd-Rautha";
 
-         fotoP1 = `<img src="assets/imgs/Vladimir Harkonnen.jpg" alt="Vladimir Harkonnen">`
-         fotoP2 = `<img src="assets/imgs/feyd-rautha.jpg" alt="Feyd-Rautha">`
+         // fotoP1 = `<img src="assets/imgs/Vladimir Harkonnen.jpg" alt="Vladimir Harkonnen">`
+         // fotoP2 = `<img src="assets/imgs/feyd-rautha.jpg" alt="Feyd-Rautha">`
       }
       else if (
          pontuacoes.corrino > pontuacoes.atreides &&
@@ -705,11 +692,11 @@
          resultadoFinal = 'Casa Corrino';
          mensagem = 'Autoritária, estratégica e disciplinada. A Casa Corrino governa o império através da ordem, da tradição e do controle político. Você provavelmente é alguém que valoriza estabilidade, organização e planejamento, preferindo agir com cautela antes de tomar grandes decisões.<br> Assim como os Corrino, você entende a importância da autoridade e acredita que liderança exige responsabilidade e equilíbrio. Em muitos momentos, prefere pensar no longo prazo e manter tudo funcionando corretamente ao invés de agir por impulso.';
 
-         nomeP1 = " Imperador Shaddam IV";
-         nomeP2 = "Princesa Irulan";
+         // nomeP1 = " Imperador Shaddam IV";
+         // nomeP2 = "Princesa Irulan";
 
-         fotoP1 = `<img src="assets/imgs/shaddam iv.jpg" alt="">`
-         fotoP2 = `<img src="assets/imgs/irulan.jpg" alt="">`
+         // fotoP1 = `<img src="assets/imgs/shaddam iv.jpg" alt="">`
+         // fotoP2 = `<img src="assets/imgs/irulan.jpg" alt="">`
       }
       else if (
          pontuacoes.fremen > pontuacoes.atreides &&
@@ -722,11 +709,11 @@
          resultadoFinal = 'Povo Fremen';
          mensagem = 'Resistentes, determinados e profundamente conectados ao ambiente em que vivem. Os Fremen aprenderam a sobreviver nas condições mais extremas de Arrakis, desenvolvendo força física e mental para enfrentar qualquer desafio. Você provavelmente é alguém adaptável, persistente e capaz de continuar seguindo em frente mesmo em situações difíceis.<br> Assim como os Fremen, você valoriza liberdade, união e sobrevivência. Sua maior força está na resiliência e na capacidade de se manter firme quando tudo parece estar contra você.';
 
-         nomeP1 = "Chani Kynes";
-         nomeP2 = "Stilgar Ben Fifrawi";
+         // nomeP1 = "Chani Kynes";
+         // nomeP2 = "Stilgar Ben Fifrawi";
 
-         fotoP1 = `<img src="assets/imgs/chani.jpg" alt="Chani Kynes">`
-         fotoP2 = `<img src="assets/imgs/stilgar.jpg" alt="Stilgar Ben Fifrawi">`
+         // fotoP1 = `<img src="assets/imgs/chani.jpg" alt="Chani Kynes">`
+         // fotoP2 = `<img src="assets/imgs/stilgar.jpg" alt="Stilgar Ben Fifrawi">`
       }
       else if (
          pontuacoes.beneGesserit > pontuacoes.atreides &&
@@ -739,11 +726,11 @@
          resultadoFinal = 'Irmandade Bene Gesserit';
          mensagem = 'Misteriosas, inteligentes e extremamente estratégicas. As Bene Gesserit dedicam suas vidas ao conhecimento, ao autocontrole e à manipulação dos acontecimentos ao seu redor. Você provavelmente é alguém observador, analítico e cuidadoso com suas decisões, preferindo pensar antes de agir. <br>Assim como as Bene Gesserit, você entende que conhecimento e inteligência podem ser armas mais poderosas do que força física. Sua capacidade de analisar pessoas e situações faz com que consiga enxergar detalhes que muitos ignoram.';
 
-         nomeP1 = "Jessica Atreides";
-         nomeP2 = "Gaius Helen Mohiam";
+         // nomeP1 = "Jessica Atreides";
+         // nomeP2 = "Gaius Helen Mohiam";
 
-         fotoP1 = `<img src="assets/imgs/jessica.jpg" alt="Jessica Atreides">`
-         fotoP2 = `<img src="assets/imgs/gaius.jpg" alt="Gaius Helen Mohiam">`
+         // fotoP1 = `<img src="assets/imgs/jessica.jpg" alt="Jessica Atreides">`
+         // fotoP2 = `<img src="assets/imgs/gaius.jpg" alt="Gaius Helen Mohiam">`
       }
 
       console.log(`Voce pertence a ` + resultadoFinal);

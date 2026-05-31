@@ -160,8 +160,8 @@
       }
       else {
          // verificar posicao dos caracteres
-         let posicaoArroba = email.indexOf('@');
-         let posicaoPonto = email.indexOf('.', posicaoArroba);
+         let posicaoArroba = email.indexOf('@'); // ve o indice do @
+         let posicaoPonto = email.indexOf('.', posicaoArroba); // ve o indice do .
 
          if (posicaoArroba < 1 || posicaoPonto < posicaoArroba + 1) {
             div_msgEmail.innerHTML = `Insira um email válido.`
@@ -247,10 +247,6 @@
             method: "POST",
             headers: {
                "Content-Type": "application/json",
-               //fetch("http://localhost:5500/usuarios/cadastrar", {
-               //method: "POST",
-               //headers: {
-               // "Content-Type": "application/json",
             },
             body: JSON.stringify({
                nomeServer: nomeVar,
